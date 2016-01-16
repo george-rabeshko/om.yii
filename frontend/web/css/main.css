@@ -4,7 +4,7 @@
 #main-container header { height: 500px; }
 #page-wrap header { height: 275px; }
 
-.logo { height: 135px; padding-top: 25px; text-align: center; }
+.logo { height: 160px; padding-top: 25px; text-align: center; }
 .logo > h1 { color: rgb(0, 0, 0); font-family: Bolero, cursive; text-transform: none; }
 .logo > h4 { color: inherit; }
 
@@ -15,12 +15,12 @@
 }
 
 .menu nav { margin: 12px 0; }
-.menu li { display: inline-block; padding: 10px 0; }
+.menu li { display: inline-block; margin: 12px 0; }
 
 .menu li > a {
   color: inherit;
   font: 20px/20px 'Web Serveroff', sans-serif;
-  padding: 10px 20px;
+  padding: 12px 20px;
   text-decoration: none;
   text-transform: uppercase;
 }

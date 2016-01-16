@@ -1,3 +1,14 @@
+<?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\helpers\Url;
+
+?>
+
 <!-- BEGIN header -->
 <header id="header">
     <div class="logo">
@@ -5,18 +16,25 @@
         <h4>Любомльська районна газета</h4>
     </div>
 
-    <div class="menu" id="menu">
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Головна</a></li>
-                <li><a href="#">Новини</a></li>
-                <li><a href="#">Відеогалерея</a></li>
-                <li><a href="#">Світлини</a></li>
-                <li><a href="#">Історія газети</a></li>
-                <li><a href="#">Передплата та ціни</a></li>
-                <li><a href="#">Контакти</a></li>
-            </ul>
-        </nav>
-    </div>
+    <?php
+    NavBar::begin(['options' => ['class' => 'menu']]);
+
+    (Url::to('') == Yii::$app->homeUrl)
+        ? $activeItem = true
+        : $activeItem = false;
+
+    echo Nav::widget([
+        'items' => [
+            ['label' => 'Головна', 'url' => Yii::$app->homeUrl, 'active' => $activeItem],
+            ['label' => 'Новини', 'url' => ['/site/about']],
+            ['label' => 'Відеогалерея', 'url' => ['/site/contact']],
+            ['label' => 'Світлини', 'url' => ['#']],
+            ['label' => 'Історія газети', 'url' => ['#']],
+            ['label' => 'Передплата та ціни', 'url' => ['#']],
+            ['label' => 'Контакти', 'url' => ['#']],
+        ],
+    ]);
+    NavBar::end();
+    ?>
 </header>
 <!-- END header -->
