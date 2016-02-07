@@ -24,7 +24,27 @@ $this->title = 'Наше життя - любомльська районна га
 
 <?= $this->render('//common/header') ?>
 
-<?= $content ?>
+<!-- BEGIN page-container -->
+<div class="page-container">
+    <div id="page">
+        <!-- BEGIN sidebar -->
+        <div class="slider">
+            <img src="/public/images/slide-photo.jpg" alt="Любомльська районна газета">
+        </div>
+        <!-- END sidebar -->
+
+        <?= $this->render('//common/left-bar') ?>
+
+        <!-- BEGIN content (article block) -->
+        <div class="content">
+            <?= $content ?>
+        </div>
+        <!-- END content -->
+
+        <?= $this->render('//common/right-bar') ?>
+    </div>
+</div>
+<!-- END page-container -->
 
 <?= $this->render('//common/footer') ?>
 

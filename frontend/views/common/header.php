@@ -23,12 +23,12 @@ use yii\helpers\Url;
     echo Nav::widget([
         'items' => [
             ['label' => 'Головна', 'url' => Yii::$app->homeUrl, 'active' => $activeItem],
-            ['label' => 'Новини', 'url' => ['/site/about']],
-            ['label' => 'Відеогалерея', 'url' => ['/site/contact']],
-            ['label' => 'Світлини', 'url' => ['#']],
-            ['label' => 'Історія газети', 'url' => ['#']],
-            ['label' => 'Передплата та ціни', 'url' => ['#']],
-            ['label' => 'Контакти', 'url' => ['#']],
+            ['label' => 'Новини', 'url' => ['/blog/novyny']],
+            ['label' => 'Відеогалерея', 'url' => ['/blog/videohalereia']],
+            ['label' => 'Світлини', 'url' => ['/blog/svitlyny']],
+            ['label' => 'Історія газети', 'url' => ['/blog/istoriia-hazety']],
+            ['label' => 'Передплата та ціни', 'url' => ['/blog/peredplata-ta-tsiny']],
+            ['label' => 'Контакти', 'url' => ['/blog/kontakty']],
         ],
     ]);
     NavBar::end();

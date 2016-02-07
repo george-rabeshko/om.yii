@@ -24,7 +24,21 @@ $basePath = $asset->basePath;
 
 <?= $this->render('//common/header') ?>
 
-<?= $content ?>
+<!-- BEGIN page-container -->
+<div class="page-container">
+    <div id="page">
+        <?= $this->render('//common/left-bar') ?>
+
+        <!-- BEGIN content (article block) -->
+        <div class="content">
+            <?= $content ?>
+        </div>
+        <!-- END content -->
+
+        <?= $this->render('//common/right-bar') ?>
+    </div>
+</div>
+<!-- END page-container -->
 
 <?= $this->render('//common/footer') ?>
 
