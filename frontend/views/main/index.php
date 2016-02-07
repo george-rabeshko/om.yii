@@ -1,20 +1,12 @@
-<article id="post-1" class="post">
-    <h2 class="post-title"><a href="#">Some title #1</a></h2>
-    <img src="/public/images/no-photo.png" alt="no-photo">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p><a href="#" class="button">Детальніше...</a><p>
-</article>
+<?php use yii\widgets\LinkPager; ?>
 
-<article id="post-1" class="post">
-    <h2 class="post-title"><a href="#">Some title #2</a></h2>
-    <img src="/public/images/no-photo.png" alt="no-photo">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p><a href="#" class="button">Детальніше...</a><p>
-</article>
+<?php foreach($articles as $article): ?>
+    <article id="<?= $article->id ?>" class="post">
+        <h2 class="post-title"><a href="/blog/<?= $article->id ?>"><?= $article->title ?></a></h2>
+        <img src="/public/images/no-photo.png" alt="no-photo">
+        <?= $article->content ?>
+        <p><a href="/blog/<?= $article->id ?>" class="button">Детальніше...</a><p>
+    </article>
+<?php endforeach; ?>
 
-<article id="post-1" class="post">
-    <h2 class="post-title"><a href="#">Some title #3</a></h2>
-    <img src="/public/images/no-photo.png" alt="no-photo">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p><a href="#" class="button">Детальніше...</a><p>
-</article>
+<?= LinkPager::widget(['pagination' => $pagination]) ?>

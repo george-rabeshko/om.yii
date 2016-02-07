@@ -3,27 +3,27 @@
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "pages".
+ * This is the model class for table "articles".
  *
  * @property integer $id
- * @property string $name
+ * @property string $title
  * @property string $content
  * @property string $created
  * @property string $updated
- * @property string $uri
+ * @property integer $category_id
+ * @property integer $comments_status
  * @property integer $status
  */
-class Pages extends ActiveRecord
+class Articles extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'pages';
+        return 'articles';
     }
 
     /**
@@ -32,11 +32,11 @@ class Pages extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'content', 'created', 'updated', 'uri'], 'required'],
+            [['title', 'content', 'created', 'updated', 'category_id', 'comments_status', 'status'], 'required'],
             [['content'], 'string'],
             [['created', 'updated'], 'safe'],
-            [['status'], 'integer'],
-            [['name', 'uri'], 'string', 'max' => 255]
+            [['category_id', 'comments_status', 'status'], 'integer'],
+            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -47,11 +47,12 @@ class Pages extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'title' => 'Title',
             'content' => 'Content',
             'created' => 'Created',
             'updated' => 'Updated',
-            'uri' => 'Uri',
+            'category_id' => 'Category ID',
+            'comments_status' => 'Comments Status',
             'status' => 'Status',
         ];
     }
