@@ -7,7 +7,6 @@ use yii\helpers\Html;
 use frontend\assets\OmAsset;
 
 OmAsset::register($this);
-
 $this->title = 'Наше життя - любомльська районна газета';
 ?>
 <?php $this->beginPage() ?>

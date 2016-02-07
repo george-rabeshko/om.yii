@@ -18,9 +18,9 @@ class OmAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/reset.css',
-        'css/common.css',
-        'css/main.css',
+        'public/css/reset.css',
+        'public/css/common.css',
+        'public/css/main.css',
     ];
     public $js = [
     ];
