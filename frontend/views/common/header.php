@@ -26,9 +26,9 @@ use yii\helpers\Url;
             ['label' => 'Новини', 'url' => ['/blog/novyny']],
             ['label' => 'Відеогалерея', 'url' => ['/blog/videohalereia']],
             ['label' => 'Світлини', 'url' => ['/blog/svitlyny']],
-            ['label' => 'Історія газети', 'url' => ['/blog/istoriia-hazety']],
-            ['label' => 'Передплата та ціни', 'url' => ['/blog/peredplata-ta-tsiny']],
-            ['label' => 'Контакти', 'url' => ['/blog/kontakty']],
+            ['label' => 'Історія газети', 'url' => ['/page/istoriia-hazety']],
+            ['label' => 'Передплата та ціни', 'url' => ['/page/peredplata-ta-tsiny']],
+            ['label' => 'Контакти', 'url' => ['/page/kontakty']],
         ],
     ]);
     NavBar::end();
