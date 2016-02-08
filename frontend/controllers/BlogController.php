@@ -15,7 +15,10 @@ class BlogController extends Controller
     {
         $category = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
 
-        $query = Articles::find()->where(['category_id' => $category->id]);
+        $query = Articles::find()->where([
+            'category_id' => $category->id,
+            'status' => 10,
+        ]);
 
         if (!$query->count()) return $this->render('error', [
             'error' => 'Вибачте, але в цій категорії статей покищо немає...',

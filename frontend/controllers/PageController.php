@@ -13,7 +13,7 @@ class PageController extends Controller
     {
         $page = Pages::findOne([
             'uri' => \Yii::$app->request->get('uri'),
-            'status' => 1,
+            'status' => 10,
         ]);
 
         return $this->render('index', ['page' => $page]);

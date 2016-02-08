@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function actionIndex()
     {
-        $query = Articles::find();
+        $query = Articles::find()->where(['status' => 10]);
 
         $pagination = new Pagination([
             'defaultPageSize' => 10,
