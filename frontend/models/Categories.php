@@ -2,8 +2,8 @@
 
 namespace frontend\models;
 
+use app\models\Articles;
 use Yii;
-use yii\base\Model;
 use yii\db\ActiveRecord;
 
 /**
@@ -11,5 +11,11 @@ use yii\db\ActiveRecord;
  */
 class Categories extends ActiveRecord
 {
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Articles::className(), ['category_id' => 'id']);
+    }
 }

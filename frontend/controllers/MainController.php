@@ -2,29 +2,21 @@
 
 namespace frontend\controllers;
 
-use app\models\Articles;
-use yii\data\Pagination;
+use app\models\Blog;
 use yii\web\Controller;
 
 class MainController extends Controller
 {
     public function actionIndex()
     {
-        $query = Articles::find()->where(['status' => 10]);
+        $blog = Blog::getInstance();
 
-        $pagination = new Pagination([
-            'defaultPageSize' => 10,
-            'totalCount' => $query->count(),
-        ]);
-
-        $articles = $query->orderBy(['id' => SORT_DESC])
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+        if (!$data = $blog->getArticlesPage())
+            return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['no_data']]);
 
         return $this->render('index', [
-            'articles' => $articles,
-            'pagination' => $pagination,
+            'articles' => $data['articles'],
+            'pagination' => $data['pagination'],
         ]);
     }
 }

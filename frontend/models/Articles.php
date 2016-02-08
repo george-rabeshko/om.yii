@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use frontend\models\Categories;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "articles".
@@ -16,7 +18,7 @@ use Yii;
  * @property integer $comments_status
  * @property integer $status
  */
-class Articles extends \yii\db\ActiveRecord
+class Articles extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -24,6 +26,14 @@ class Articles extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'articles';
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
     }
 
     /**
