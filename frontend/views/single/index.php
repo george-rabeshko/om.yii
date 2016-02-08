@@ -1,9 +1,5 @@
-<?php
-/* @var $this yii\web\View */
-?>
-<h1>single/index</h1>
-
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<article id="<?= $article->id ?>" class="post">
+    <h2 class="post-title"><?= $article->title ?></h2>
+    <img src="/public/images/no-photo.png" alt="no-photo">
+    <?= $article->content ?>
+</article>

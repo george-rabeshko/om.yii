@@ -2,11 +2,16 @@
 
 namespace frontend\controllers;
 
-class SingleController extends \yii\web\Controller
+use app\models\Articles;
+use yii\web\Controller;
+
+class SingleController extends Controller
 {
+    public $layout = 'om-inner';
+
     public function actionIndex()
     {
-        return $this->render('index');
+        $article = Articles::findOne(['id' => \Yii::$app->request->get('article_id')]);
+        return $this->render('index', ['article' => $article]);
     }
-
 }

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use app\models\Pages;
 use yii\web\Controller;
 
 class PageController extends Controller
@@ -10,7 +11,12 @@ class PageController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $page = Pages::findOne([
+            'uri' => \Yii::$app->request->get('uri'),
+            'status' => 1,
+        ]);
+
+        return $this->render('index', ['page' => $page]);
     }
 
 }

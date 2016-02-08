@@ -23,12 +23,12 @@ use yii\helpers\Url;
     echo Nav::widget([
         'items' => [
             ['label' => 'Головна', 'url' => Yii::$app->homeUrl, 'active' => $activeItem],
-            ['label' => 'Новини', 'url' => ['/blog/novyny']],
-            ['label' => 'Відеогалерея', 'url' => ['/blog/videohalereia']],
-            ['label' => 'Світлини', 'url' => ['/blog/svitlyny']],
-            ['label' => 'Історія газети', 'url' => ['/page/istoriia-hazety']],
-            ['label' => 'Передплата та ціни', 'url' => ['/page/peredplata-ta-tsiny']],
-            ['label' => 'Контакти', 'url' => ['/page/kontakty']],
+            ['label' => 'Новини', 'url' => \Yii::$app->urlManager->createUrl(['blog/index', 'uri' => 'novyny'])],
+            ['label' => 'Відеогалерея', 'url' => \Yii::$app->urlManager->createUrl(['blog/index', 'uri' => 'videohalereia'])],
+            ['label' => 'Світлини', 'url' => \Yii::$app->urlManager->createUrl(['blog/index', 'uri' => 'svitlyny'])],
+            ['label' => 'Історія газети', 'url' => \Yii::$app->urlManager->createUrl(['page/index', 'uri' => 'istoriia-hazety'])],
+            ['label' => 'Передплата та ціни', 'url' => \Yii::$app->urlManager->createUrl(['page/index', 'uri' => 'peredplata-ta-tsiny'])],
+            ['label' => 'Контакти', 'url' => \Yii::$app->urlManager->createUrl(['page/index', 'uri' => 'kontakty'])],
         ],
     ]);
     NavBar::end();

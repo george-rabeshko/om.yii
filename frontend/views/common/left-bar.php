@@ -4,9 +4,7 @@
 <div class="left-bar">
     <div class="categories">
         <h3>Категорії</h3>
-        <ul>
-            <?= CategoriesWidget::widget(); ?>
-        </ul>
+        <?= CategoriesWidget::widget(); ?>
     </div>
 </div>
 <!-- END left-bar -->
