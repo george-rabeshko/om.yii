@@ -29,14 +29,6 @@ class Articles extends ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategory()
-    {
-        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
-    }
-
-    /**
      * @inheritdoc
      */
     public function rules()
@@ -65,5 +57,21 @@ class Articles extends ActiveRecord
             'comments_status' => 'Comments Status',
             'status' => 'Status',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comments::className(), ['article_id' => 'id']);
     }
 }
