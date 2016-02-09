@@ -1,13 +1,9 @@
 <?php
-use yii\helpers\Url;
+use frontend\widgets\NoteWidget;
 use yii\widgets\LinkPager;
 ?>
 
-<?php if (\Yii::$app->session->hasFlash('incorrect_uri')): ?>
-<div class="warning-msg">
-    <p><?= \Yii::$app->session->getFlash('incorrect_uri') ?></p>
-</div>
-<?php endif; ?>
+<?= NoteWidget::widget(['name' => 'warning-msg']) ?>
 
 <?php foreach($articles as $article): ?>
 <article id="<?= $article->id ?>" class="post">

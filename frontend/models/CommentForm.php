@@ -14,6 +14,7 @@ class CommentForm extends Model
 {
     public $author;
     public $content;
+    public $article_id;
 
     /**
      * @inheritdoc
@@ -38,8 +39,8 @@ class CommentForm extends Model
             $comments = new Comments();
             $comments->author = $this->author;
             $comments->content = $this->content;
-            $comments->created = time();
-            $comments->article_id = 1;
+            $comments->created = date('Y-m-d');
+            $comments->article_id = $this->article_id;
             $comments->status = 10;
             $comments->save();
         } catch(ErrorException $e) {
@@ -47,5 +48,16 @@ class CommentForm extends Model
         }
 
         return true;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'author' => 'Ім’я',
+            'content' => 'Повідомлення',
+        ];
     }
 }

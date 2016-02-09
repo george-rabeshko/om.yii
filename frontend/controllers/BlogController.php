@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use app\models\Articles;
 use app\models\Blog;
+use app\models\Comments;
 use frontend\models\Categories;
 use frontend\models\CommentForm;
 use yii\web\Controller;
@@ -32,12 +33,12 @@ class BlogController extends Controller
         $category = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
 
         if (!$category) {
-            \Yii::$app->session->setFlash('incorrect_uri', \Yii::$app->params['incorrect_category_uri']);
+            \Yii::$app->session->setFlash('warning-msg', \Yii::$app->params['incorrectCategoryUri']);
             return $this->redirect(['/blog'], 302);
         }
 
         if (!$data = $blog->getArticlesPage($category))
-            return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['no_articles']]);
+            return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['noArticles']]);
 
         return $this->render('index', [
             'articles' => $data['articles'],
@@ -53,28 +54,33 @@ class BlogController extends Controller
         $article = Articles::findOne(['id' => \Yii::$app->request->get('id')]);
 
         if (!$article) {
-            \Yii::$app->session->setFlash('incorrect_uri', \Yii::$app->params['incorrect_single_uri']);
+            \Yii::$app->session->setFlash('warning-msg', \Yii::$app->params['incorrectSingleUri']);
             return $this->redirect(['/blog/category?uri=' . $uri], 302);
         }
 
         if ($article->category->uri != $uri) {
-            \Yii::$app->session->setFlash('incorrect_uri', \Yii::$app->params['incorrect_single_uri']);
+            \Yii::$app->session->setFlash('warning-msg', \Yii::$app->params['incorrectSingleUri']);
             return $this->redirect(['/blog/single?uri=' . $article->category->uri . '&id=' . $article->id], 302);
         }
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->article_id = $article->id;
+
             $answer = ($model->addComment())
-                ? ['name' => 'comment_adding', 'description' => 'success_comment_adding']
-                : ['name' => 'comment_adding', 'description' => 'fail_comment_adding'];
+                ? ['name' => 'success-msg', 'description' => 'commentSuccessSending']
+                : ['name' => 'error-msg', 'description' => 'commentWarningSending'];
 
             \Yii::$app->session->setFlash($answer['name'], \Yii::$app->params[$answer['description']]);
 
             return $this->refresh();
         }
 
+        $comments = Comments::find()->where(['status' => 10, 'article_id' => $article->id])->all();
+
         return $this->render('single', [
             'article' => $article,
             'model' => $model,
+            'comments' => $comments,
         ]);
     }
 }

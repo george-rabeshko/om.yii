@@ -38,7 +38,7 @@ class Comments extends ActiveRecord
             [['content'], 'string'],
             [['created', 'approved'], 'safe'],
             [['article_id', 'status'], 'integer'],
-            [['author'], 'string', 'min' => 2, 'max' => 50]
+            [['author'], 'string', 'max' => 50]
         ];
     }
 
@@ -49,12 +49,12 @@ class Comments extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'author' => 'Ім’я',
-            'content' => 'Повідомлення',
-            'created' => 'Створено',
-            'approved' => 'Опубліковано',
-            'article_id' => 'ID запису',
-            'status' => 'Статус',
+            'author' => 'Author',
+            'content' => 'Content',
+            'created' => 'Created',
+            'approved' => 'Approved',
+            'article_id' => 'Article ID',
+            'status' => 'Status',
         ];
     }
 

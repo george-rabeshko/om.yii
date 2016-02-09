@@ -1,4 +1,5 @@
 <?php
+use frontend\widgets\NoteWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
@@ -10,21 +11,32 @@ use yii\widgets\ActiveForm;
 </article>
 
 <div id="comments">
-    <h3>Додати коментар</h3>
+    <div class="add-comment">
+        <h3>Додати коментар</h3>
 
-    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+        <?= NoteWidget::widget(['name' => 'success-msg']); ?>
+        <?= NoteWidget::widget(['name' => 'warning-msg']); ?>
 
-    <?= $form->field($model, 'author') ?>
-    <?= $form->field($model, 'content')->textarea() ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+        <?= $form->field($model, 'author')->textInput(['maxlength' => 50]) ?>
+        <?= $form->field($model, 'content')->textarea(['maxlength' => 750]) ?>
+
+        <?= Html::submitButton('Надіслати', ['class' => 'button', 'name' => 'button']) ?>
+
+        <?php ActiveForm::end(); ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="comments-list">
+        <h3>Список коментарів</h3>
+        <?php if (!$comments): ?>
+        <p>Коментарі відсутні</p>
+        <?php else: ?>
 
-    <h3>Список коментарів</h3>
-    <?php $this->render('_comments', [
-        'comments' => $model,
-    ]); ?>
+
+
+        <?= $this->render('_comments', ['comments' => $comments]); ?>
+
+        <?php endif; ?>
+    </div>
 </div>
