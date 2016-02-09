@@ -9,10 +9,7 @@ use yii\widgets\LinkPager;
 </div>
 <?php endif; ?>
 
-<?php if ($error): ?>
-<h2>О-о-ой...</h2>
-<p><?= $error ?></p>
-<?php else: foreach($articles as $article): ?>
+<?php foreach($articles as $article): ?>
 <article id="<?= $article->id ?>" class="post">
     <h2 class="post-title">
         <a href="<?= \Yii::$app->urlManager->createUrl([
@@ -34,5 +31,3 @@ use yii\widgets\LinkPager;
 <?php endforeach; ?>
 
 <?= LinkPager::widget(['pagination' => $pagination]) ?>
-
-<?php endif; ?>
