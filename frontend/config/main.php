@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'language' => 'uk',
     'basePath' => dirname(__DIR__),
     'layout' => 'om', // custom
     'defaultRoute' => 'main', // custom

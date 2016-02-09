@@ -38,20 +38,8 @@ class Comments extends ActiveRecord
             [['content'], 'string'],
             [['created', 'approved'], 'safe'],
             [['article_id', 'status'], 'integer'],
-            [['author'], 'string', 'filter', 'filter' => 'trim', 'min' => 2, 'max' => 50]
+            [['author'], 'string', 'min' => 2, 'max' => 50]
         ];
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($this->isNewRecord)
-                $this->created = time();
-
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -61,12 +49,12 @@ class Comments extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'author' => 'Author',
-            'content' => 'Content',
-            'created' => 'Created',
-            'approved' => 'Approved',
-            'article_id' => 'Article ID',
-            'status' => 'Status',
+            'author' => 'Ім’я',
+            'content' => 'Повідомлення',
+            'created' => 'Створено',
+            'approved' => 'Опубліковано',
+            'article_id' => 'ID запису',
+            'status' => 'Статус',
         ];
     }
 
