@@ -7,7 +7,6 @@ use yii\helpers\Html;
 use frontend\assets\OmAsset;
 
 OmAsset::register($this);
-$this->title = 'Наше життя - любомльська районна газета';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ $this->title = 'Наше життя - любомльська районна га
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= \Yii::$app->params['title'] ?></title>
     <?php $this->head() ?>
 </head>
 <body id="main-container">

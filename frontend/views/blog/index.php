@@ -3,9 +3,9 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 ?>
 
-<?php if (\Yii::$app->session->hasFlash('incorrect_category_uri') && Url::to('') == '/blog'): ?>
+<?php if (\Yii::$app->session->hasFlash('incorrect_uri')): ?>
 <div class="warning-msg">
-    <p><?= \Yii::$app->session->getFlash('incorrect_category_uri') ?></p>
+    <p><?= \Yii::$app->session->getFlash('incorrect_uri') ?></p>
 </div>
 <?php endif; ?>
 

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "comments".
@@ -17,7 +18,7 @@ use Yii;
  *
  * @property Articles $article
  */
-class Comments extends \yii\db\ActiveRecord
+class Comments extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -33,12 +34,24 @@ class Comments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['author', 'content', 'created', 'approved', 'article_id', 'status'], 'required'],
+            [['author', 'content', 'created', 'article_id', 'status'], 'required'],
             [['content'], 'string'],
             [['created', 'approved'], 'safe'],
             [['article_id', 'status'], 'integer'],
-            [['author'], 'string', 'max' => 50]
+            [['author'], 'string', 'filter', 'filter' => 'trim', 'min' => 2, 'max' => 50]
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if($this->isNewRecord)
+                $this->created = time();
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

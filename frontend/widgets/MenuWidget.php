@@ -5,7 +5,7 @@ namespace frontend\widgets;
 use frontend\models\Categories;
 use yii\base\Widget;
 
-class CategoriesWidget extends Widget
+class MenuWidget extends Widget
 {
     const STATUS_SIDEBAR_CATEGORY = 0;
 

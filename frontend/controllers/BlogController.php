@@ -28,11 +28,10 @@ class BlogController extends Controller
     {
         $blog = Blog::getInstance();
 
-        $uri = \Yii::$app->request->get('uri');
-        $category = Categories::findOne(['uri' => $uri]);
+        $category = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
 
-        if (!$category || !$uri || empty($uri)) {
-            \Yii::$app->session->setFlash('incorrect_category_uri', \Yii::$app->params['incorrect_category_uri']);
+        if (!$category) {
+            \Yii::$app->session->setFlash('incorrect_uri', \Yii::$app->params['incorrect_category_uri']);
             return $this->redirect(['/blog'], 302);
         }
 
@@ -47,7 +46,18 @@ class BlogController extends Controller
 
     public function actionSingle()
     {
+        $uri = \Yii::$app->request->get('uri');
         $article = Articles::findOne(['id' => \Yii::$app->request->get('id')]);
+
+        if (!$article) {
+            \Yii::$app->session->setFlash('incorrect_uri', \Yii::$app->params['incorrect_single_uri']);
+            return $this->redirect(['/blog/category?uri=' . $uri], 302);
+        }
+
+        if ($article->category->uri != $uri) {
+            \Yii::$app->session->setFlash('incorrect_uri', \Yii::$app->params['incorrect_single_uri']);
+            return $this->redirect(['/blog/single?uri=' . $article->category->uri . '&id=' . $article->id], 302);
+        }
 
         return $this->render('single', ['article' => $article]);
     }

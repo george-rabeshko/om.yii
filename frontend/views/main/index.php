@@ -1,5 +1,7 @@
 <?php use yii\widgets\LinkPager; ?>
 
+<?php $this->title .= \Yii::$app->params['description']; ?>
+
 <?php foreach($articles as $article): ?>
     <article id="<?= $article->id ?>" class="post">
         <h2 class="post-title">
