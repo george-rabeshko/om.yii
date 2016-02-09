@@ -75,7 +75,7 @@ class BlogController extends Controller
             return $this->refresh();
         }
 
-        $comments = Comments::find()->where(['status' => 10, 'article_id' => $article->id])->all();
+        $comments = Comments::find()->where(['status' => 10, 'article_id' => $article->id])->orderBy(['id' => SORT_DESC])->all();
 
         return $this->render('single', [
             'article' => $article,

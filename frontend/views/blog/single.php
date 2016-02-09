@@ -33,8 +33,6 @@ use yii\widgets\ActiveForm;
         <p>Коментарі відсутні</p>
         <?php else: ?>
 
-
-
         <?= $this->render('_comments', ['comments' => $comments]); ?>
 
         <?php endif; ?>
