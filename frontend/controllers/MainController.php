@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Blog;
+use frontend\models\Blog;
 use yii\web\Controller;
 
 class MainController extends Controller

@@ -2,9 +2,8 @@
 
 namespace common\models;
 
-use app\models\Comments;
-use frontend\models\Categories;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "articles".
@@ -21,7 +20,7 @@ use Yii;
  * @property Categories $category
  * @property Comments[] $comments
  */
-class Articles extends \yii\db\ActiveRecord
+class Articles extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -56,7 +55,7 @@ class Articles extends \yii\db\ActiveRecord
             'content' => 'Контент',
             'created' => 'Створено',
             'updated' => 'Змінено',
-            'category_id' => 'Category ID',
+            'category_id' => 'ID категорії',
             'comments_status' => 'Коментарі',
             'status' => 'Статус',
         ];

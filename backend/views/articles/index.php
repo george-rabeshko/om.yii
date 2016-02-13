@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'title',
                 'contentOptions' => [
-                    'style' => 'font-weight: bold;width: 250px',
-                ]
+                    'style' => 'font-weight: bold; width: 250px;',
+                ],
             ],
             [
                 'attribute' => 'content',
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'contentOptions' => [
                     'style' => 'width: 600px',
-                ]
+                ],
             ],
             'created',
             'updated',

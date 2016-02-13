@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Pages;
+use common\models\Pages;
 use yii\web\Controller;
 
 class PageController extends Controller

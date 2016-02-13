@@ -2,11 +2,11 @@
 
 namespace frontend\controllers;
 
-use app\models\Articles;
-use app\models\Blog;
-use app\models\Comments;
-use frontend\models\Categories;
+use frontend\models\Blog;
 use frontend\models\CommentForm;
+use common\models\Articles;
+use common\models\Comments;
+use common\models\Categories;
 use yii\web\Controller;
 
 class BlogController extends Controller

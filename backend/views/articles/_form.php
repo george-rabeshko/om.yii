@@ -7,6 +7,7 @@ use backend\widgets\ActiveListWidget;
 /* @var $this yii\web\View */
 /* @var $model common\models\Articles */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="articles-form">

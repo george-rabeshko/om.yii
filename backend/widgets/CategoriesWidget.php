@@ -2,7 +2,7 @@
 
 namespace backend\widgets;
 
-use frontend\models\Categories;
+use common\models\Categories;
 use yii\base\Widget;
 
 class CategoriesWidget extends Widget

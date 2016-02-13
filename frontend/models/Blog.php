@@ -1,7 +1,8 @@
 <?php
 
-namespace app\models;
+namespace frontend\models;
 
+use common\models\Articles;
 use yii\base\Model;
 use yii\data\Pagination;
 use Yii;
