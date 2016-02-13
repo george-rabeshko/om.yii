@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\widgets\ActiveListWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Articles */
@@ -17,25 +18,31 @@ use yii\widgets\ActiveForm;
 
     <?php if (!$model->isNewRecord) echo $form->field($model, 'created')->textInput() ?>
 
-    <?//= $form->field($model, 'updated')->textInput(['value' => date('Y-m-d')]) ?>
+    <?= ActiveListWidget::widget([
+        'model' => $model,
+        'attribute' => 'category_id',
+        'items' => $items['categories'],
+        'label' => 'Категорія',
+    ]) ?>
+
+    <?= ActiveListWidget::widget([
+        'model' => $model,
+        'attribute' => 'status',
+        'items' => $items['article_status'],
+        'label' => 'Статус',
+    ]) ?>
+
+    <?= ActiveListWidget::widget([
+        'model' => $model,
+        'attribute' => 'comments_status',
+        'items' => $items['comments_status'],
+        'label' => 'Коментарі',
+    ]) ?>
 
     <div class="form-group">
-        <label for="articles-category_id">Категорія</label>
-        <?= Html::activeDropDownList($model, 'category_id', $items['categories'], ['class' => 'form-control']) ?>
-    </div>
-
-    <div class="form-group">
-        <label for="articles-category_id">Статус</label>
-        <?= Html::activeDropDownList($model, 'status', $items['article_status'], ['class' => 'form-control']) ?>
-    </div>
-
-    <div class="form-group">
-        <label for="articles-category_id">Коментарі</label>
-        <?= Html::activeDropDownList($model, 'comments_status', $items['comments_status'], ['class' => 'form-control']) ?>
-    </div>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Додати' : 'Оновити', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Додати' : 'Оновити', [
+            'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary',
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

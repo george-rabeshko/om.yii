@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ArticlesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = 'Записи категорії: ' . $currentCategoryName;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-index">

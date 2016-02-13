@@ -34,12 +34,13 @@ class ArticlesController extends Controller
      */
     public function actionIndex()
     {
-        $currentCategory = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
-
         $searchModel = new ArticlesSearch();
+
+        $currentCategory = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $currentCategory->id);
 
         return $this->render('index', [
+            'currentCategoryName' => $currentCategory->name,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -66,8 +67,7 @@ class ArticlesController extends Controller
     {
         $model = new Articles();
 
-        $date = date('Y-m-d');
-
+        $date = $this->getDate();
         $model->created = $date;
         $model->updated = $date;
 
@@ -91,7 +91,7 @@ class ArticlesController extends Controller
     {
         $model = $this->findModel($id);
 
-        $model->updated = date('Y-m-d');
+        $model->updated = $this->getDate();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -124,15 +124,19 @@ class ArticlesController extends Controller
     {
         return [
             'categories' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
-            'article_status' => [
-                10 => 'Опубліковано',
-                0 => 'Прихована стаття',
-            ],
-            'comments_status' => [
-                10 => 'Дозволені',
-                0 => 'Заборонені',
-            ],
+            'article_status' => [10 => 'Опубліковано', 0 => 'Прихована стаття'],
+            'comments_status' => [10 => 'Дозволені', 0 => 'Заборонені'],
         ];
+    }
+
+    /**
+     * Display current date
+     * Useful for changing output date
+     * @return string
+     */
+    private function getDate()
+    {
+        return date('Y-m-d');
     }
 
     /**
