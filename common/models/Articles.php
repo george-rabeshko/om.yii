@@ -52,13 +52,13 @@ class Articles extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'created' => 'Created',
-            'updated' => 'Updated',
+            'title' => 'Заголовок',
+            'content' => 'Контент',
+            'created' => 'Створено',
+            'updated' => 'Змінено',
             'category_id' => 'Category ID',
-            'comments_status' => 'Comments Status',
-            'status' => 'Status',
+            'comments_status' => 'Коментарі',
+            'status' => 'Статус',
         ];
     }
 

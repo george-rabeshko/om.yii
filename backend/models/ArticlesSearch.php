@@ -42,10 +42,18 @@ class ArticlesSearch extends Articles
      */
     public function search($params, $id)
     {
-        $query = Articles::find()->where(['category_id' => $id]);
+        $query = Articles::find()->where(['category_id' => $id])->with('category');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ],
+            ],
+            'pagination' => [
+                'pagesize' => 10,
+            ],
         ]);
 
         $this->load($params);

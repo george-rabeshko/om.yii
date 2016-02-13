@@ -32,15 +32,17 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">Управління контентом</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="treeview active">
                 <a href="/"><i class="fa fa-link"></i> <span>Категорії</span> <i
                         class="fa fa-angle-down pull-right"></i></a>
                 <?= CategoriesWidget::widget() ?>
             </li>
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Сторінки</span></a></li>
+            <li><a href="#"><i class="fa fa-link"></i> <span>Сторінки</span></a></li>
             <li><a href="#"><i class="fa fa-link"></i> <span>Коментарі</span></a></li>
+            <li class="header">Управління сайтом</li>
+            <li><a href="/"><i class="fa fa-link"></i> <span>Налаштування</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

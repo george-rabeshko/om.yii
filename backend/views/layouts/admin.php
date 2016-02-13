@@ -17,6 +17,12 @@ AdminAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= \Yii::$app->params['title'] ?></title>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({
+            selector:'textarea',
+            images_upload_base_path: '/',
+            content_style: 'p {font-size: 1.1em; line-height: 1.6em;} * {color: #555}'
+        });</script>
     <?php $this->head() ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

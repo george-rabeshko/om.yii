@@ -20,14 +20,14 @@ class AdminAsset extends AssetBundle
     public $css = [
         'public/css/AdminLTE.min.css',
         'public/css/skins/skin-blue.min.css',
-        'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
-        'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
+        '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
+        '//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
         'public/css/custom.css',
     ];
     public $js = [
         'public/js/app.min.js',
-        'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js',
-        'https://oss.maxcdn.com/respond/1.4.2/respond.min.js',
+        '//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js',
+        '//oss.maxcdn.com/respond/1.4.2/respond.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

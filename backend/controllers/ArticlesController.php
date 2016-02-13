@@ -6,6 +6,7 @@ use frontend\models\Categories;
 use Yii;
 use common\models\Articles;
 use backend\models\ArticlesSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -65,11 +66,17 @@ class ArticlesController extends Controller
     {
         $model = new Articles();
 
+        $date = date('Y-m-d');
+
+        $model->created = $date;
+        $model->updated = $date;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'items' => $this->getItems(),
             ]);
         }
     }
@@ -84,11 +91,14 @@ class ArticlesController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->updated = date('Y-m-d');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'items' => $this->getItems(),
             ]);
         }
     }
@@ -104,6 +114,25 @@ class ArticlesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Group data for Html::activeDropDownList method
+     * @return array
+     */
+    private function getItems()
+    {
+        return [
+            'categories' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
+            'article_status' => [
+                10 => 'Опубліковано',
+                0 => 'Прихована стаття',
+            ],
+            'comments_status' => [
+                10 => 'Дозволені',
+                0 => 'Заборонені',
+            ],
+        ];
     }
 
     /**

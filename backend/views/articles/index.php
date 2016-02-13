@@ -26,11 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
-            'title',
-            'content:ntext',
+            [
+                'attribute' => 'title',
+                'contentOptions' => [
+                    'style' => 'font-weight: bold;width: 250px',
+                ]
+            ],
+            [
+                'attribute' => 'content',
+                'value' => function($model) {
+                    return strip_tags($model->content);
+                },
+                'contentOptions' => [
+                    'style' => 'width: 600px',
+                ]
+            ],
             'created',
             'updated',
-            // 'category_id',
             // 'comments_status',
             // 'status',
 

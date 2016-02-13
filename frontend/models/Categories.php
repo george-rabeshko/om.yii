@@ -37,9 +37,9 @@ class Categories extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Категорія',
             'uri' => 'Uri',
-            'status' => 'Status',
+            'status' => 'Статус',
         ];
     }
 

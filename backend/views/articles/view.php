@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редагувати', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Видалити', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Ви справді хочете видалити цей запис?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,12 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             // 'id',
             'title',
-            'content:ntext',
+            'content:html',
             'created',
             'updated',
-            'category_id',
-            'comments_status',
-            'status',
+            'category.name',
+            [
+                'attribute' => 'status',
+                'value' => ($model->status) ? 'Опубліковано' : 'Прихована стаття',
+            ],
+            [
+                'attribute' => 'comments_status',
+                'value' => ($model->comments_status) ? 'Дозволені' : 'Заборонені',
+            ],
         ],
     ]) ?>
 
