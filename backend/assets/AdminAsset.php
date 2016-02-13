@@ -22,6 +22,7 @@ class AdminAsset extends AssetBundle
         'public/css/skins/skin-blue.min.css',
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
         'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
+        'public/css/custom.css',
     ];
     public $js = [
         'public/js/app.min.js',
