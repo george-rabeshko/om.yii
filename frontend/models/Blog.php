@@ -6,6 +6,7 @@ use common\models\Articles;
 use yii\base\Model;
 use yii\data\Pagination;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class ...

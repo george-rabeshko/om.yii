@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * ArticlesController implements the CRUD actions for Articles model.
@@ -72,6 +73,7 @@ class ArticlesController extends Controller
         $model->updated = $date;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->setMainImage($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -94,6 +96,7 @@ class ArticlesController extends Controller
         $model->updated = date('Y-m-d');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->setMainImage($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -114,6 +117,22 @@ class ArticlesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Set main image for an article
+     * @param mixed $model
+     * @return null
+     */
+    private function setMainImage($model)
+    {
+        $model->image = UploadedFile::getInstance($model, 'image');
+
+        if ($model->image) {
+            $path = \Yii::getAlias('@frontend/web/uploads/images/') . $model->image->baseName . '.' . $model->image->extension;
+            $model->image->saveAs($path);
+            return $model->attachImage($path, true);
+        }
     }
 
     /**

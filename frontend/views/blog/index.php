@@ -14,7 +14,7 @@ use yii\widgets\LinkPager;
             'id' => $article->id,
         ]) ?>"><?= $article->title ?></a>
     </h2>
-    <img src="/public/images/no-photo.png" alt="no-photo">
+    <img src="/<?= $article->getImage()->getPath() ?>" alt="no-photo">
     <?= $article->content ?>
     <p>
         <a href="<?= \Yii::$app->urlManager->createUrl([

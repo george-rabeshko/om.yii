@@ -22,12 +22,23 @@ use yii\db\ActiveRecord;
  */
 class Articles extends ActiveRecord
 {
+    public $image;
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'articles';
+    }
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ],
+        ];
     }
 
     /**
@@ -40,7 +51,9 @@ class Articles extends ActiveRecord
             [['content'], 'string'],
             [['created', 'updated'], 'safe'],
             [['category_id', 'comments_status', 'status'], 'integer'],
-            [['title'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255],
+            [['image'], 'safe'],
+            [['image'], 'file', 'extensions' => 'jpg, gif, png'],
         ];
     }
 
@@ -58,6 +71,7 @@ class Articles extends ActiveRecord
             'category_id' => 'ID категорії',
             'comments_status' => 'Коментарі',
             'status' => 'Статус',
+            'image' => 'Головне зображення',
         ];
     }
 
