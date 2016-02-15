@@ -3,18 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Categories;
-use common\models\Articles;
-use backend\models\ArticlesSearch;
-use yii\helpers\ArrayHelper;
-use yii\filters\VerbFilter;
+use common\models\Pages;
+use backend\models\PagesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * ArticlesController implements the CRUD actions for Articles model.
+ * PagesController implements the CRUD actions for Pages model.
  */
-class ArticlesController extends Controller
+class PagesController extends Controller
 {
     public function behaviors()
     {
@@ -29,25 +27,22 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Lists all Articles models.
+     * Lists all Pages models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ArticlesSearch();
-
-        $currentCategory = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $currentCategory->id);
+        $searchModel = new PagesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'currentCategoryName' => $currentCategory->name,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Articles model.
+     * Displays a single Pages model.
      * @param integer $id
      * @return mixed
      */
@@ -59,13 +54,13 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Creates a new Articles model.
+     * Creates a new Pages model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Articles();
+        $model = new Pages();
 
         $date = date('Y-m-d');
         $model->created = $date;
@@ -82,7 +77,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Updates an existing Articles model.
+     * Updates an existing Pages model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -104,7 +99,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Deletes an existing Articles model.
+     * Deletes an existing Pages model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -122,23 +117,19 @@ class ArticlesController extends Controller
      */
     private function getItems()
     {
-        return [
-            'categories' => ArrayHelper::map(Categories::find()->all(), 'id', 'name'),
-            'article_status' => [10 => 'Опубліковано', 0 => 'Прихована стаття'],
-            'comments_status' => [10 => 'Дозволені', 0 => 'Заборонені'],
-        ];
+        return [10 => 'Опубліковано', 0 => 'Прихована сторінка'];
     }
 
     /**
-     * Finds the Articles model based on its primary key value.
+     * Finds the Pages model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Articles the loaded model
+     * @return Pages the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Articles::findOne($id)) !== null) {
+        if (($model = Pages::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

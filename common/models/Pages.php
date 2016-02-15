@@ -31,7 +31,7 @@ class Pages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'content', 'created', 'updated', 'uri'], 'required'],
+            [['name', 'created', 'updated', 'uri'], 'required'],
             [['content'], 'string'],
             [['created', 'updated'], 'safe'],
             [['status'], 'integer'],
@@ -46,12 +46,12 @@ class Pages extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'content' => 'Content',
-            'created' => 'Created',
-            'updated' => 'Updated',
-            'uri' => 'Uri',
-            'status' => 'Status',
+            'name' => 'Назва',
+            'content' => 'Контент',
+            'created' => 'Створено',
+            'updated' => 'Оновлено',
+            'uri' => 'Адреса',
+            'status' => 'Статус',
         ];
     }
 }
