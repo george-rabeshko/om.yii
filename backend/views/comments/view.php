@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Запис',
             ],
             'author',
-            'content:ntext',
+            'content:html',
             'created',
             'updated',
             [

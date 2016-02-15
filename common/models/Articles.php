@@ -36,7 +36,7 @@ class Articles extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'created', 'updated', 'category_id'], 'required'],
+            [['title', 'created', 'updated', 'category_id'], 'required'],
             [['content'], 'string'],
             [['created', 'updated'], 'safe'],
             [['category_id', 'comments_status', 'status'], 'integer'],

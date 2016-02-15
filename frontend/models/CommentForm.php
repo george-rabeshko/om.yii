@@ -41,7 +41,7 @@ class CommentForm extends Model
             $comments->content = $this->content;
             $comments->created = date('Y-m-d');
             $comments->article_id = $this->article_id;
-            $comments->status = 10;
+            $comments->status = 0;
             $comments->save();
         } catch(ErrorException $e) {
             return false;

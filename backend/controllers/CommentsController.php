@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Comments;
 use backend\models\CommentsSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,6 +75,28 @@ class CommentsController extends Controller
                 'items' => $this->getItems(),
             ]);
         }
+    }
+
+    /**
+     * Creates a new Comments model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionApprove($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->status = 10;
+        $model->save();
+
+//        $msg = ($model->status = 10 && $model->save())
+//            ? ['type' => 'success-msg', 'text' => 'success']
+//            : ['type' => 'warning-msg', 'text' => 'error'];
+
+//        \Yii::$app->session->setFlash('success-msg', ['success']);
+
+        return $this->redirect([Url::to(['/comments'])]);
     }
 
     /**

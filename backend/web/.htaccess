@@ -2,6 +2,7 @@ Options +FollowSymLinks
 IndexIgnore */*
 
 RewriteEngine on
+RewriteBase /admin
 
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f

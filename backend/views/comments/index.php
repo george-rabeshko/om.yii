@@ -1,5 +1,6 @@
 <?php
 
+use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -11,6 +12,8 @@ $this->title = 'Коментарі';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comments-index">
+
+    <?= Alert::widget(); ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -41,6 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'content',
+                'value' => function($model) {
+                    return strip_tags($model->content);
+                },
                 'contentOptions' => [
                     'style' => 'width: 250px;',
                 ],
@@ -56,7 +62,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'headerOptions' => ['width' => '66'],
+
+                'template'=>'{view}{approve}{update}{delete}',
+
+                'buttons' => [
+                    'approve' => function ($url) {
+                        return Html::a('<span class="glyphicon glyphicon-ok"></span>', $url, [
+                            'title' => Yii::t('yii', 'Підтвердити'),
+                        ]);
+                    },
+                ],
+
+                'headerOptions' => ['width' => '97'],
             ],
         ],
     ]); ?>
