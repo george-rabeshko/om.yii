@@ -1,7 +1,7 @@
 <?php
 namespace frontend\models;
 
-use app\models\Comments;
+use common\models\Comments;
 use common\models\User;
 use yii\base\ErrorException;
 use yii\base\Model;

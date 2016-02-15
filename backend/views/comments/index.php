@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PagesSearch */
+/* @var $searchModel backend\models\CommentsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Сторінки';
+$this->title = 'Коментарі';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pages-index">
+<div class="comments-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Додати сторінку', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Додати коментар', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,28 +27,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             [
-                'attribute' => 'name',
+                'attribute' => 'article_id',
                 'contentOptions' => [
-                    'style' => 'font-weight: bold; width: 250px;',
+                    'style' => 'font-weight: bold; width: 200px;',
+                ],
+                'value' => 'article.title',
+            ],
+            [
+                'attribute' => 'author',
+                'contentOptions' => [
+                    'style' => 'width: 180px;',
                 ],
             ],
             [
                 'attribute' => 'content',
-                'value' => function($model) {
-                    return strip_tags($model->content);
-                },
                 'contentOptions' => [
-                    'style' => 'width: 600px',
+                    'style' => 'width: 250px;',
                 ],
             ],
             'created',
             'updated',
-            // 'uri',
-            // 'status',
+            [
+                'attribute' => 'status',
+                'value' => function($model) {
+                    return ($model->status) ? 'Опубліковано' : 'В черзі';
+                },
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'headerOptions' => ['width' => '30'],
+                'headerOptions' => ['width' => '66'],
             ],
         ],
     ]); ?>

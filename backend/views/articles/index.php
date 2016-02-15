@@ -46,7 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'comments_status',
             // 'status',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'headerOptions' => ['width' => '30'],
+            ],
         ],
     ]); ?>
 

@@ -45,7 +45,7 @@ use yii\helpers\Url;
                 <?= CategoriesWidget::widget() ?>
             </li>
             <li><a href="<?= Url::toRoute(['/pages']) ?>"><i class="fa fa-link"></i> <span>Сторінки</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Коментарі</span></a></li>
+            <li><a href="<?= Url::toRoute(['/comments']) ?>"><i class="fa fa-link"></i> <span>Коментарі</span></a></li>
             <li class="header">Управління сайтом</li>
             <li><a href="/"><i class="fa fa-link"></i> <span>Налаштування</span></a></li>
         </ul><!-- /.sidebar-menu -->

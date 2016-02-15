@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property string $author
  * @property string $content
  * @property string $created
- * @property string $approved
+ * @property string $updated
  * @property integer $article_id
  * @property integer $status
  *
@@ -34,9 +34,9 @@ class Comments extends ActiveRecord
     public function rules()
     {
         return [
-            [['author', 'content', 'created', 'article_id', 'status'], 'required'],
+            [['author', 'created', 'article_id', 'status'], 'required'],
             [['content'], 'string'],
-            [['created', 'approved'], 'safe'],
+            [['created', 'updated'], 'safe'],
             [['article_id', 'status'], 'integer'],
             [['author'], 'string', 'max' => 50]
         ];
@@ -49,12 +49,12 @@ class Comments extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'author' => 'Author',
-            'content' => 'Content',
-            'created' => 'Created',
-            'approved' => 'Approved',
-            'article_id' => 'Article ID',
-            'status' => 'Status',
+            'author' => 'Автор',
+            'content' => 'Контент',
+            'created' => 'Створено',
+            'updated' => 'Оновлено',
+            'article_id' => 'Запис',
+            'status' => 'Статус',
         ];
     }
 
