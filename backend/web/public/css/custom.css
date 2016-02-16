@@ -12,3 +12,9 @@
     font-weight: bold;
     text-transform: uppercase;
 }
+.skin-blue .sidebar-form input[type="text"], .skin-blue .sidebar-form .btn {
+    border-left: none;
+}
+.main-header .logo {
+    font-family: Calibri, sans-serif;
+}

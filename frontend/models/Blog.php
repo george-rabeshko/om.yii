@@ -49,15 +49,4 @@ class Blog extends Model
             'pagination' => $pagination,
         ];
     }
-
-    public function getContent($content, $length = 550)
-    {
-        $description = strip_tags($content);
-
-        $description = (iconv_strlen($description) > $length)
-            ? substr($description, 0, strpos($description, ' ', $length))
-            : substr($description, 0);
-
-        return trim($description, "!,.-*^#@ ") . '...';
-    }
 }

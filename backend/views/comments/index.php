@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Tool;
 use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -55,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'content',
                 'value' => function($model) {
-                    return strip_tags($model->content);
+                    return Tool::getContent($model->content);
                 },
                 'contentOptions' => [
                     'style' => 'width: 250px;',

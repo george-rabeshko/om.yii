@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Tool;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use \yii\helpers\Url;
@@ -8,7 +9,10 @@ use \yii\helpers\Url;
 /* @var $searchModel backend\models\ArticlesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Записи категорії: ' . $currentCategoryName;
+$this->title = (isset($currentCategoryName))
+    ? 'Записи категорії: ' . $currentCategoryName
+    : 'Всі записи';
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-index">
@@ -46,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'content',
                 'value' => function($model) {
-                    return strip_tags($model->content);
+                    return Tool::getContent($model->content);
                 },
                 'contentOptions' => [
                     'style' => 'width: 510px',

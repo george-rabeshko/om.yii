@@ -30,7 +30,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Lists all Articles models.
+     * Lists all Articles of a category.
      * @return mixed
      */
     public function actionIndex()
@@ -77,10 +77,7 @@ class ArticlesController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-            'items' => $this->getItems(),
-        ]);
+
     }
 
     /**

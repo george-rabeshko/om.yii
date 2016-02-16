@@ -71,8 +71,6 @@ AdminAsset::register($this);
 
 <?= $this->render('//common/footer') ?>
 
-<?= $this->render('//common/control-sidebar') ?>
-
 <?php $this->endBody() ?>
 </body>
 </html>

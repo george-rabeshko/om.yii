@@ -40,9 +40,11 @@ class ArticlesSearch extends Articles
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $id)
+    public function search($params, $id = null)
     {
-        $query = Articles::find()->where(['category_id' => $id])->with('category');
+        $query = (is_null($id))
+            ? Articles::find()->with('category')
+            : Articles::find()->where(['category_id' => $id])->with('category');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
