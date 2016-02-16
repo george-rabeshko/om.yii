@@ -5,5 +5,5 @@
         Любомльська районна газета
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2010-<?= date('Y'); ?> <a href="#">"Наше життя"</a>.</strong> Всі права захищено.
+    <strong>Copyright &copy; 2010-<?= date('Y'); ?> <a href="/">"Наше життя"</a>.</strong> Всі права захищено.
 </footer>

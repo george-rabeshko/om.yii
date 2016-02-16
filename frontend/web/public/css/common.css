@@ -63,14 +63,24 @@ h6 > span {
     font-weight: 0;
 }
 
-a {
+.post-title > a, .post-title > a:focus {
     color: rgb(42, 42, 42);
     text-decoration: none;
 }
 
-a:hover {
+.post-title a:hover {
     color: rgb(42, 42, 42);
     text-decoration: underline;
+}
+
+a, a:focus {
+    color: rgb(174, 160, 116);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: rgba(174, 160, 116, 0.8);
+    text-decoration: none;
 }
 
 p {

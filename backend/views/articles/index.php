@@ -22,6 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Додати запис', ['create'], ['class' => 'btn btn-success']) ?>
+
+        <?php
+            if ($_SERVER['REQUEST_URI'] != '/admin/articles')
+                echo Html::a('Усі записи', ['/articles'], ['class' => 'btn btn-primary pull-right']);
+        ?>
+
     </p>
 
     <?= GridView::widget([

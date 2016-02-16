@@ -23,8 +23,8 @@ class Tool extends Model
         return \Yii::$app->session->setFlash($name, \Yii::$app->params[$msg]);
     }
 
-    public static function setActiveItem($url, $activeItemName = 'active')
+    public static function hasAddressBarIt($url)
     {
-        return (stristr($_SERVER['REQUEST_URI'], $url)) ? $activeItemName : 'bla';
+        return (stristr($_SERVER['REQUEST_URI'], $url)) ? true : false;
     }
 }
