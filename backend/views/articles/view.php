@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Всі записи категорії', ['/articles', 'uri' => $model->category->uri], ['class' => 'btn btn-success']) ?> |
-        <?= Html::a('Редагувати', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редагувати', ['update', 'uri' => $model->category->uri, 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Видалити', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

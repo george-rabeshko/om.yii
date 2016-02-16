@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = 'Update';
 <div class="articles-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?= Html::a('Всі записи категорії', ['/articles', 'uri' => $model->category->uri], ['class' => 'btn btn-success btn-mb']) ?>
 
     <?= $this->render('_form', [
         'model' => $model,

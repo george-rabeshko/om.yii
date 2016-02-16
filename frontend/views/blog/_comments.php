@@ -1,3 +1,9 @@
+<?php
+
+use yii\widgets\LinkPager;
+
+?>
+
 <?php foreach($comments as $comment):?>
 <section>
     <p class="mini-headline"><?= $comment->author ?></p>
@@ -6,3 +12,5 @@
     <hr>
 </section>
 <?php endforeach; ?>
+
+<?= LinkPager::widget(['pagination' => $pagination]) ?>

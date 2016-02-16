@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Tool;
 use Yii;
 use common\models\Categories;
 use common\models\Articles;
@@ -77,7 +78,10 @@ class ArticlesController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-
+        return $this->render('create', [
+            'model' => $model,
+            'items' => $this->getItems(),
+        ]);
     }
 
     /**
@@ -111,9 +115,12 @@ class ArticlesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $uri = $model->category->uri;
 
-        return $this->redirect(['index']);
+        $model->delete();
+
+        return $this->redirect(['/articles?uri=' . $uri]);
     }
 
     /**

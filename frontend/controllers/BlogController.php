@@ -49,6 +49,7 @@ class BlogController extends Controller
     public function actionSingle()
     {
         $model = new CommentForm();
+        $blog = Blog::getInstance();
 
         $uri = \Yii::$app->request->get('uri');
         $article = Articles::findOne(['id' => \Yii::$app->request->get('id')]);
@@ -75,12 +76,13 @@ class BlogController extends Controller
             return $this->refresh();
         }
 
-        $comments = Comments::find()->where(['status' => 10, 'article_id' => $article->id])->orderBy(['id' => SORT_DESC])->all();
+        $data = $blog->getComments($article->id);
 
         return $this->render('single', [
             'article' => $article,
             'model' => $model,
-            'comments' => $comments,
+            'comments' => $data['comments'],
+            'pagination' => $data['pagination'],
         ]);
     }
 }

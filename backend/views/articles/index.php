@@ -68,6 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
+
+                'urlCreator'=>function($action, $model){
+                    return [$action, 'uri' => $model->category->uri,'id' => $model->id];
+                },
+
                 'headerOptions' => ['width' => '30'],
             ],
         ],

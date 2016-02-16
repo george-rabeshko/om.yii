@@ -17,4 +17,14 @@ class Tool extends Model
             ? trim(substr($description, 0, strpos($description, ' ', $length)), "!,.-*^#@ ") . '...'
             : substr($description, 0);
     }
+
+    public static function setFlash($name, $msg)
+    {
+        return \Yii::$app->session->setFlash($name, \Yii::$app->params[$msg]);
+    }
+
+    public static function setActiveItem($url, $activeItemName = 'active')
+    {
+        return (stristr($_SERVER['REQUEST_URI'], $url)) ? $activeItemName : 'bla';
+    }
 }

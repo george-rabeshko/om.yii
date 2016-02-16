@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\models\Articles;
+use common\models\Comments;
 use yii\base\Model;
 use yii\data\Pagination;
 use Yii;
@@ -46,6 +47,31 @@ class Blog extends Model
 
         return [
             'articles' => $articles,
+            'pagination' => $pagination,
+        ];
+    }
+
+    public function getComments($id)
+    {
+        $query = Comments::find()->where([
+            'status' => 10,
+            'article_id' => $id,
+        ]);
+
+        if (!$query->count()) return false;
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 15,
+            'totalCount' => $query->count(),
+        ]);
+
+        $comments = $query->orderBy(['id' => SORT_DESC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return [
+            'comments' => $comments,
             'pagination' => $pagination,
         ];
     }
