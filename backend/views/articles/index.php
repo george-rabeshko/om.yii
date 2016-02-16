@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use \yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ArticlesSearch */
@@ -28,6 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             [
                 'attribute' => 'title',
+                'format' => 'raw',
+                'value' => function($model) {
+                    if ($model->status) {
+                        $host = Yii::$app->request->hostInfo;
+                        $url = $host . '/blog/single?uri=' . $model->category->uri . '&id=' . $model->id;
+                        return Html::a($model->title, Url::to($url), ['target'=>'_blank']);
+                    }
+
+                    return $model->title;
+                },
                 'contentOptions' => [
                     'style' => 'font-weight: bold; width: 250px;',
                 ],
@@ -38,13 +49,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     return strip_tags($model->content);
                 },
                 'contentOptions' => [
-                    'style' => 'width: 600px',
+                    'style' => 'width: 510px',
                 ],
             ],
             'created',
             'updated',
             // 'comments_status',
-            // 'status',
+            [
+                'attribute' => 'status',
+                'value' => function($model) {
+                    return ($model->status) ? 'Опубліковано' : 'В черзі';
+                },
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

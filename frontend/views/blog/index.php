@@ -14,8 +14,8 @@ use yii\widgets\LinkPager;
             'id' => $article->id,
         ]) ?>"><?= $article->title ?></a>
     </h2>
-    <img src="/<?= $article->getImage()->getPath() ?>" alt="no-photo">
-    <?= $article->content ?>
+    <img src="/<?= $article->getImage()->getPath() ?>" height="280" width="580" alt="no-photo">
+    <p class="article-description"><?= $blog->getContent($article->content) ?></p>
     <p>
         <a href="<?= \Yii::$app->urlManager->createUrl([
             'blog/single',

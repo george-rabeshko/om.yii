@@ -96,7 +96,7 @@ class CommentsController extends Controller
 
 //        \Yii::$app->session->setFlash('success-msg', ['success']);
 
-        return $this->redirect([Url::to(['/comments'])]);
+        return $this->redirect(Url::to(['/comments']));
     }
 
     /**

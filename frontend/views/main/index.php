@@ -11,8 +11,8 @@
                 'id' => $article->id,
             ]) ?>"><?= $article->title ?></a>
         </h2>
-        <img src="/public/images/no-photo.png" alt="no-photo">
-        <?= $article->content ?>
+        <img class="main-photo" src="/<?= $article->getImage()->getPath() ?>" height="280" width="580" alt="no-photo">
+        <p class="article-description"><?= $blog->getContent($article->content) ?></p>
         <p>
             <a href="<?= \Yii::$app->urlManager->createUrl([
                 'blog/single',

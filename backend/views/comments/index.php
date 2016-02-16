@@ -3,6 +3,7 @@
 use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CommentsSearch */
@@ -31,10 +32,19 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             [
                 'attribute' => 'article_id',
+                'format' => 'raw',
+                'value' => function($model) {
+                    if ($model->article->status) {
+                        $host = Yii::$app->request->hostInfo;
+                        $url = $host . '/blog/single?uri=' . $model->article->category->uri . '&id=' . $model->article->id;
+                        return Html::a($model->article->title, Url::to($url), ['target'=>'_blank']);
+                    }
+
+                    return $model->article->title;
+                },
                 'contentOptions' => [
                     'style' => 'font-weight: bold; width: 200px;',
                 ],
-                'value' => 'article.title',
             ],
             [
                 'attribute' => 'author',
@@ -66,9 +76,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template'=>'{view}{approve}{update}{delete}',
 
                 'buttons' => [
-                    'approve' => function ($url) {
-                        return Html::a('<span class="glyphicon glyphicon-ok"></span>', $url, [
-                            'title' => Yii::t('yii', 'Підтвердити'),
+                    'approve' => function ($url, $model) {
+                        if (!$model->status) {
+                            return Html::a(Html::tag('span', '', ['class' => 'glyphicon glyphicon-ok']), $url, [
+                                'title' => Yii::t('yii', 'Підтвердити'),
+                            ]);
+                        }
+
+                        return Html::tag('span', '', [
+                            'class' => 'glyphicon glyphicon-ok',
+                            'style' => 'opacity: .5',
                         ]);
                     },
                 ],

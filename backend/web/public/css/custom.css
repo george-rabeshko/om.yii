@@ -2,3 +2,13 @@
     color: #ECF0F5 !important;
     font-weight: bold;
 }
+.detail-view tr > th {
+    width: 150px;
+}
+.wrapper h1 {
+    margin-bottom: 20px;
+}
+.logo-lg, .logo-mini {
+    font-weight: bold;
+    text-transform: uppercase;
+}

@@ -2,11 +2,11 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="http://om.yii.loc/" class="logo">
+    <a href="<?= Yii::$app->request->hostInfo ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini">НЖ</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg">"Наже життя"</span>
     </a>
 
     <!-- Header Navbar -->
@@ -112,13 +112,6 @@
                 </li>
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
-                    <!-- Menu Toggle Button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <!-- The user image in the navbar-->
-                        <img src="/dist/images/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
-                    </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">

@@ -21,7 +21,7 @@ use backend\widgets\ActiveListWidget;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 10]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 15]) ?>
 
     <?= $form->field($model, 'image')->fileInput() ?>
 

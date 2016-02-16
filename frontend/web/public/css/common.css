@@ -131,3 +131,10 @@ table tr td {
     border: 1px solid #ebccd1;
     color: #a94442;
 }
+
+.main-photo {
+    display: block;
+}
+.article-description {
+    margin: 10px 0 15px;
+}

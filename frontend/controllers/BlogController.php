@@ -21,6 +21,7 @@ class BlogController extends Controller
             return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['no_data']]);
 
         return $this->render('index', [
+            'blog' => $blog,
             'articles' => $data['articles'],
             'pagination' => $data['pagination'],
         ]);
@@ -41,6 +42,7 @@ class BlogController extends Controller
             return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['noArticles']]);
 
         return $this->render('index', [
+            'blog' => $blog,
             'articles' => $data['articles'],
             'pagination' => $data['pagination'],
         ]);

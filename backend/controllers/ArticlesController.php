@@ -75,12 +75,12 @@ class ArticlesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->setMainImage($model);
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'items' => $this->getItems(),
-            ]);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+            'items' => $this->getItems(),
+        ]);
     }
 
     /**

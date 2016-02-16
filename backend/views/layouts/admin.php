@@ -18,8 +18,10 @@ AdminAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= \Yii::$app->params['title'] ?></title>
     <script src="/uploads/js/tinymce/tinymce.min.js"></script>
-    <script>tinymce.init({
+    <script>
+        tinymce.init({
             selector:'textarea',
+            content_css: "../public/css/tiny-content.css",
             plugins: [
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks code fullscreen",
@@ -44,7 +46,8 @@ AdminAsset::register($this);
                     callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
                 }
             }
-        });</script>
+        });
+    </script>
     <?php $this->head() ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -57,18 +60,6 @@ AdminAsset::register($this);
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Page Header
-            <small>Optional description</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol>
-    </section>
-
     <!-- Main content -->
     <section class="content">
 

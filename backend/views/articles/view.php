@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?= Html::a('Всі записи категорії', ['/articles', 'uri' => $model->category->uri], ['class' => 'btn btn-success']) ?> |
         <?= Html::a('Редагувати', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Видалити', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -42,6 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'comments_status',
                 'value' => ($model->comments_status) ? 'Дозволені' : 'Заборонені',
             ],
+        ],
+        'options' => [
+            'class' => 'table table-striped table-bordered detail-view',
         ],
     ]) ?>
 

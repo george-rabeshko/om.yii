@@ -40,6 +40,7 @@ class CommentForm extends Model
             $comments->author = $this->author;
             $comments->content = $this->content;
             $comments->created = date('Y-m-d');
+            $comments->updated = null;
             $comments->article_id = $this->article_id;
             $comments->status = 0;
             $comments->save();

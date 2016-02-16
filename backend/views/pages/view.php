@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Перегляд сторінки</h1>
 
     <p>
+        <?= Html::a('Всі сторінки', ['/pages'], ['class' => 'btn btn-success']) ?> |
         <?= Html::a('Редагувати', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Видалити', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -38,6 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'value' => ($model->status) ? 'Опубліковано' : 'Прихована сторінка',
             ],
+        ],
+        'options' => [
+            'class' => 'table table-striped table-bordered detail-view',
         ],
     ]) ?>
 
