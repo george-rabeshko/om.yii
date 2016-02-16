@@ -98,7 +98,7 @@ table tr td {
 }
 
 .note {
-    border-radius: 5px;
+    border-radius: 3px;
     margin-bottom: 30px;
     padding: 10px;
 }
@@ -137,4 +137,8 @@ table tr td {
 }
 .article-description {
     margin: 10px 0 15px;
+}
+
+.form-control {
+    border-radius: 3px;
 }

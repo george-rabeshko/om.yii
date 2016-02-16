@@ -24,7 +24,7 @@ use common\models\Tool;
             'blog/single',
             'uri' => $article->category->uri,
             'id' => $article->id,
-        ]) ?>" class="button">Детальніше...</a>
+        ]) ?>" class="button">Дізнатися більше</a>
     <p>
 </article>
 <?php endforeach; ?>

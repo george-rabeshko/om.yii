@@ -50,10 +50,11 @@
 
 .menu li > a:hover, .menu li > a:focus {
     background-color: rgba(174, 160, 116, 0.5);
+    border-radius: 3px;
 }
 
-.menu li > a:hover, .active {
-    border-radius: 5px;
+.active {
+    border-radius: 3px;
 }
 
 .active {
@@ -149,7 +150,7 @@ article {
 .button, .button:focus {
     background-color: rgb(174, 160, 116);
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     color: rgb(255, 255, 255);
     font: 20px/20px 'Web Serveroff', sans-serif;
     padding: 5px 15px;
@@ -209,7 +210,7 @@ footer {
 }
 
 .button[type='submit'] {
-    padding: 8px 20px;
+    padding: 8px 15px;
 }
 
 .mini-headline {
