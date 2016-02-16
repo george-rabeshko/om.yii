@@ -37,18 +37,18 @@
 
 .menu li {
     display: inline-block;
-    margin: 12px 0;
+    margin: 13px 0 10px;
 }
 
 .menu li > a {
     color: inherit;
     font: 20px/20px 'Web Serveroff', sans-serif;
-    padding: 12px 20px;
+    padding: 10px 20px;
     text-decoration: none;
     text-transform: uppercase;
 }
 
-.menu li > a:hover {
+.menu li > a:hover, .menu li > a:focus {
     background-color: rgba(174, 160, 116, 0.5);
 }
 
@@ -131,7 +131,7 @@
     text-decoration: none;
 }
 
-.categories li > a:hover {
+.categories li > a:hover, .categories li > a:focus {
     color: inherit;
     text-decoration: underline;
 }
@@ -146,13 +146,13 @@ article {
     margin-bottom: 50px;
 }
 
-.button {
+.button, .button:focus {
     background-color: rgb(174, 160, 116);
     border: none;
     border-radius: 5px;
     color: rgb(255, 255, 255);
     font: 20px/20px 'Web Serveroff', sans-serif;
-    padding: 5px 20px;
+    padding: 5px 15px;
     text-decoration: none;
     text-transform: uppercase;
 }
