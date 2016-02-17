@@ -9,7 +9,7 @@
         <?php
             if(stristr($catUri, \Yii::$app->request->get('uri'))
                 || $catUri == $requestUri
-                || (stristr($requestUri, 'page-') && $catUri == '/')
+                || ($catUri == '/' && stristr($requestUri, 'page-') && !stristr($requestUri, 'category'))
             ) echo "class='active'"
         ?>><?= $item['label'] ?></a>
     </li>

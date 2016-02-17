@@ -32,11 +32,12 @@ return [
             'rules' => [
                 'page-<page:\d+>' => 'main/index',
                 'category/page-<page:\d+>' => 'blog/index',
-                'category/<uri:[\w-]+>/page-<page:\d+>' => 'blog/category',
                 '/' => 'main/index',
                 'category' => 'blog/index',
-                'category/<uri:[\w-]+>'=>'blog/category',
-                'category/<uri:[\w-]+>/<id:\d+>'=>'blog/single',
+                'category/<uri:[\w-]+>/page-<page:\d+>' => 'blog/category',
+                'category/<uri:[\w-]+>' => 'blog/category',
+                'category/<uri:[\w-]+>/<id:\d+>/page-<page:\d+>' => 'blog/single',
+                'category/<uri:[\w-]+>/<id:\d+>' => 'blog/single',
                 '<uri:[\w-]+>' => 'page/index',
             ]
         ],

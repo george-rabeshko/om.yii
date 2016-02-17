@@ -36,7 +36,7 @@ class Blog extends Model
         if (!$query->count()) return false;
 
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 10,
             'totalCount' => $query->count(),
             'forcePageParam' => false,
             'pageSizeParam' => false,
@@ -63,8 +63,10 @@ class Blog extends Model
         if (!$query->count()) return false;
 
         $pagination = new Pagination([
-            'defaultPageSize' => 15,
+            'defaultPageSize' => 20,
             'totalCount' => $query->count(),
+            'forcePageParam' => false,
+            'pageSizeParam' => false,
         ]);
 
         $comments = $query->orderBy(['id' => SORT_DESC])

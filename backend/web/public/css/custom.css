@@ -21,3 +21,6 @@
 .btn-mb {
     margin-bottom: 10px;
 }
+.content-wrapper {
+    min-height: 787px !important;
+}
