@@ -5,8 +5,8 @@ namespace frontend\controllers;
 use frontend\models\Blog;
 use frontend\models\CommentForm;
 use common\models\Articles;
-use common\models\Comments;
 use common\models\Categories;
+use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 
 class BlogController extends Controller
@@ -50,14 +50,18 @@ class BlogController extends Controller
 
         if (!$article) {
             \Yii::$app->session->setFlash('articleNotFound', 'warning');
-            return $this->redirect(['/blog/category?uri=' . $uri], 302);
+            // Look at UrlManager configurations
+            // Real address is ['/blog/category?uri=' . $uri]
+            return $this->redirect(['/category/' . $uri], 302);
         }
 
         $articleCatUri = $article->category->uri;
         $articleId = $article->id;
 
         if ($articleCatUri != $uri)
-            return $this->redirect(['/blog/single?uri=' . $articleCatUri . '&id=' . $articleId], 302);
+            // Look at UrlManager configurations
+            // Real address is ['/blog/single?uri=' . $articleCatUri . '&id=' . $articleId]
+            return $this->redirect(['/category/' . $articleCatUri . '/' . $articleId], 302);
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             $model->article_id = $articleId;
@@ -76,6 +80,25 @@ class BlogController extends Controller
             'article' => $article,
             'model' => $model,
             'data' => $data,
+        ]);
+    }
+
+    public function actionSearch($q = '')
+    {
+        /** @var \himiklab\yii2\search\Search $search */
+        $search = \Yii::$app->search;
+        $searchData = $search->find($q); // Search by full index.
+        //$searchData = $search->find($q, ['model' => 'page']); // Search by index provided only by model `page`.
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $searchData['results'],
+            'pagination' => ['pageSize' => 10],
+        ]);
+
+        return $this->render('found', [
+            'hits' => $dataProvider->getModels(),
+            'pagination' => $dataProvider->getPagination(),
+            'query' => $searchData['query']
         ]);
     }
 }

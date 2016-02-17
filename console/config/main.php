@@ -13,6 +13,12 @@ return [
     'controllerNamespace' => 'console\controllers',
     'components' => [
         'db' => require(dirname(__DIR__) . '/../common/config/db.php'),
+        'search' => [
+            'class' => 'himiklab\yii2\search\Search',
+            'models' => [
+                'common\models\Articles',
+            ],
+        ],
         'log' => [
             'targets' => [
                 [

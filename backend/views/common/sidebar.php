@@ -3,7 +3,6 @@
 use backend\widgets\CategoriesWidget;
 use common\models\Tool;
 use yii\helpers\Url;
-use anmaslov\autocomplete\AutoComplete;
 
 ?>
 
@@ -16,20 +15,10 @@ use anmaslov\autocomplete\AutoComplete;
         <!-- search form (Optional) -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-                <?php
-//                    echo AutoComplete::widget([
-//                        'name' => 'link',
-//                        'data' =>  Tool::getModelForAutocomplete(),
-//                        'clientOptions' => [
-//                            'minChars' => 2,
-//                        ],
-//                        'options' => [
-//                            'placeholder' => 'Пошук...',
-//                        ]
-//                    ]);
-                ?>
+                <input type="text" name="q" class="form-control" placeholder="Пошук...">
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                    <i class="fa fa-search"></i>
                 </button>
               </span>
             </div>

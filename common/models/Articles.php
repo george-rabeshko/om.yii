@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use himiklab\yii2\search\behaviors\SearchBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -32,11 +33,30 @@ class Articles extends ActiveRecord
         return 'articles';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
             'image' => [
                 'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ],
+            'search' => [
+                'class' => SearchBehavior::className(),
+                'searchScope' => function ($model) {
+                    /** @var \yii\db\ActiveQuery $model */
+                    $model->select(['title', 'content', 'id']);
+                    //$model->andWhere(['indexed' => true]);
+                },
+                'searchFields' => function ($model) {
+                    /** @var self $model */
+                    return [
+                        ['name' => 'title', 'value' => $model->title],
+                        ['name' => 'body', 'value' => strip_tags($model->content), 'type' => SearchBehavior::FIELD_TEXT],
+                        ['name' => 'url', 'value' => $model->id, 'type' => SearchBehavior::FIELD_KEYWORD],
+                    ];
+                }
             ],
         ];
     }

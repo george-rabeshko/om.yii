@@ -185,7 +185,7 @@ class CommentsController extends Controller
         if (($model = new Comments()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Сторінка, яку Ви шукаєте не існує.');
+            throw new NotFoundHttpException('Сторінки, яку Ви шукаєте не існує.');
         }
     }
 
@@ -201,7 +201,7 @@ class CommentsController extends Controller
         if (($model = Comments::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Сторінка, яку Ви шукаєте не існує.');
+            throw new NotFoundHttpException('Сторінки, яку Ви шукаєте не існує.');
         }
     }
 }

@@ -24,6 +24,16 @@ return [
         ],
     ],
     'components' => [
+        'urlManager' => [
+            'rules' => [
+                '/' => 'main/index',
+                '<controller>' => '<controller>/index',
+                '<controller>/<action:create>' => '<controller>/create',
+                'articles/<uri:[\w-]+>' => 'articles/index',
+                'articles/<uri:[\w-]+>/<action:[\w-]+>/<id:\d+>' => 'articles/<action>',
+                '<controller:(pages|comments)>/<action>/<id:\d+>' => '<controller>/<action>',
+            ]
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

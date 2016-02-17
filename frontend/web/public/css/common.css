@@ -162,3 +162,7 @@ table tr td {
 .form-control {
     border-radius: 3px;
 }
+
+.site-error h1 {
+    margin-bottom: 10px;
+}

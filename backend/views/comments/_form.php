@@ -22,10 +22,6 @@ use anmaslov\autocomplete\AutoComplete;
 
     <?= $form->field($model, 'updated')->textInput() ?>
 
-    <pre>
-        <?= print_r($_POST) ?>
-    </pre>
-
     <?php
         echo $form->field($model, 'article_id')->widget(AutoComplete::className(), [
             'name' => 'link',

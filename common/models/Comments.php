@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use himiklab\yii2\search\behaviors\SearchBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -26,6 +27,31 @@ class Comments extends ActiveRecord
     public static function tableName()
     {
         return 'comments';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'search' => [
+                'class' => SearchBehavior::className(),
+                'searchScope' => function ($model) {
+                    /** @var \yii\db\ActiveQuery $model */
+                    $model->select(['author', 'content', 'id']);
+                    $model->andWhere(['indexed' => true]);
+                },
+                'searchFields' => function ($model) {
+                    /** @var self $model */
+                    return [
+                        ['name' => 'title', 'value' => $model->author],
+                        ['name' => 'body', 'value' => strip_tags($model->content), 'type' => SearchBehavior::FIELD_TEXT],
+                        ['name' => 'url', 'value' => $model->id, 'type' => SearchBehavior::FIELD_KEYWORD],
+                    ];
+                }
+            ],
+        ];
     }
 
     /**

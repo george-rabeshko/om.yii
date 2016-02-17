@@ -28,6 +28,15 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        'urlManager' => [
+            'rules' => [
+                '/' => 'main/index',
+                'category' => 'blog/index',
+                'category/<uri:[\w-]+>'=>'blog/category',
+                'category/<uri:[\w-]+>/<id:\d+>'=>'blog/single',
+                '<uri:[\w-]+>' => 'page/index',
+            ]
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

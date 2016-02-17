@@ -21,7 +21,10 @@
         "kartik-v/yii2-widgets": "*",
         "costa-rico/yii2-images": "*",
         "anmaslov/yii2-autocomplete-widget": "*",
-        "yiisoft/yii2-jui": "^2.0"
+        "yiisoft/yii2-jui": "^2.0",
+        "himiklab/yii2-search-component-v2" : "*",
+        "zendframework/zendsearch": "2.0.0rc5",
+        "zendframework/zend-stdlib": "2.3.1 as 2.0.0rc5"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

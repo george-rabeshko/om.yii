@@ -75,7 +75,7 @@ class ArticlesController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->setMainImage($model);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'uri' => $model->category->uri,'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -181,7 +181,7 @@ class ArticlesController extends Controller
         if (($model = new Articles()) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('Сторінка, яку Ви шукаєте не існує.');
+            throw new NotFoundHttpException('Сторінки, яку Ви шукаєте не існує.');
         }
     }
 
@@ -197,7 +197,7 @@ class ArticlesController extends Controller
         if (($model = Articles::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Сторінки, яку Ви шукаєте не існує.');
         }
     }
 }
