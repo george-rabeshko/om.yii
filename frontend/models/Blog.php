@@ -36,8 +36,10 @@ class Blog extends Model
         if (!$query->count()) return false;
 
         $pagination = new Pagination([
-            'defaultPageSize' => 10,
+            'defaultPageSize' => 5,
             'totalCount' => $query->count(),
+            'forcePageParam' => false,
+            'pageSizeParam' => false,
         ]);
 
         $articles = $query->orderBy(['id' => SORT_DESC])

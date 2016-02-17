@@ -109,8 +109,26 @@ table tr td {
     margin-right: 5px;
 }
 
-.pagination {
-    font-size: 13px !important;
+.pagination > .active > a, .pagination > .active > a:focus {
+    background-color: #AEA074;
+    border-color: #DDDDDD;
+}
+
+.pagination > .active > a:hover {
+    background-color: #BEB38F;
+    border-color: #DDDDDD;
+}
+
+.pagination > li > a, .pagination > li > a:focus {
+    color: #AEA074;
+}
+
+.pagination > li > a:hover {
+    color: #BEB38F;
+}
+
+.pagination > .disabled > span {
+    color: #8A8A8A;
 }
 
 .alert {

@@ -30,6 +30,9 @@ return [
         ],
         'urlManager' => [
             'rules' => [
+                'page-<page:\d+>' => 'main/index',
+                'category/page-<page:\d+>' => 'blog/index',
+                'category/<uri:[\w-]+>/page-<page:\d+>' => 'blog/category',
                 '/' => 'main/index',
                 'category' => 'blog/index',
                 'category/<uri:[\w-]+>'=>'blog/category',
