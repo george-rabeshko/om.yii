@@ -31,7 +31,7 @@ class BlogController extends Controller
 
         if (!$category) {
             \Yii::$app->session->setFlash('incorrectCategoryUri', 'warning');
-            return $this->redirect(['/blog'], 302);
+            return $this->redirect(['/category'], 302);
         }
 
         if (!$data = $blog->getArticlesPage($category))
@@ -51,7 +51,7 @@ class BlogController extends Controller
         if (!$article) {
             \Yii::$app->session->setFlash('articleNotFound', 'warning');
             // Look at UrlManager configurations
-            // Real address is ['/blog/category?uri=' . $uri]
+            // Real address is['/blog/category?uri=' . $uri]
             return $this->redirect(['/category/' . $uri], 302);
         }
 
