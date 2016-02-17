@@ -106,7 +106,11 @@ class PagesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $msg = ($this->findModel($id)->delete())
+            ? ['name' => 'deletePageSuccessful', 'type' => 'success']
+            : ['name' => 'deletePageFailure', 'type' => 'error'];
+
+        \Yii::$app->session->setFlash($msg['name'], $msg['type']);
 
         return $this->redirect(['index']);
     }

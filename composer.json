@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widgets": "*",
-        "costa-rico/yii2-images": "*"
+        "costa-rico/yii2-images": "*",
+        "anmaslov/yii2-autocomplete-widget": "*",
+        "yiisoft/yii2-jui": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use common\widgets\Alert;
 use yii\helpers\Html;
 use frontend\assets\OmAsset;
 
@@ -31,6 +32,8 @@ $basePath = $asset->basePath;
 
         <!-- BEGIN content (article block) -->
         <div class="content">
+            <?= Alert::widget() ?>
+
             <?= $content ?>
         </div>
         <!-- END content -->

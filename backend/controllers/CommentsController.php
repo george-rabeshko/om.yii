@@ -3,9 +3,11 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\Articles;
 use common\models\Comments;
 use backend\models\CommentsSearch;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,7 +35,7 @@ class CommentsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CommentsSearch();
+        $searchModel = $this->getSearchModel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -61,20 +63,32 @@ class CommentsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Comments();
+        $model = $this->getModel();
+        $request = \Yii::$app->request;
 
         $date = date('Y-m-d');
         $model->created = $date;
         $model->updated = $date;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'items' => $this->getItems(),
-            ]);
+        if ($model->load($request->post())) {
+            $model->article_id = Articles::find()
+                ->select('id')
+                ->filterWhere(['like', 'title', $request->post('link')])
+                ->scalar();
+
+            if ($model->save())
+                return $this->redirect(['view', 'id' => $model->id]);
+
+            \Yii::$app->session->setFlash('cantSaveData', 'error');
         }
+
+        $data = ArrayHelper::map(Articles::find()->all(), 'id', 'title');
+
+        return $this->render('create', [
+            'data' => $data,
+            'model' => $model,
+            'items' => $this->getItems(),
+        ]);
     }
 
     /**
@@ -88,13 +102,12 @@ class CommentsController extends Controller
         $model = $this->findModel($id);
 
         $model->status = 10;
-        $model->save();
 
-//        $msg = ($model->status = 10 && $model->save())
-//            ? ['type' => 'success-msg', 'text' => 'success']
-//            : ['type' => 'warning-msg', 'text' => 'error'];
+        $msg = ($model->save())
+            ? ['name' => 'approveCommentSuccessful', 'type' => 'success']
+            : ['name' => 'approveCommentFailure', 'type' => 'error'];
 
-//        \Yii::$app->session->setFlash('success-msg', ['success']);
+        \Yii::$app->session->setFlash($msg['name'], $msg['type']);
 
         return $this->redirect(Url::to(['/comments']));
     }
@@ -111,14 +124,13 @@ class CommentsController extends Controller
 
         $model->updated = date('Y-m-d');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save())
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'items' => $this->getItems(),
-            ]);
-        }
+
+        return $this->render('update', [
+            'model' => $model,
+            'items' => $this->getItems(),
+        ]);
     }
 
     /**
@@ -129,7 +141,11 @@ class CommentsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $msg = ($this->findModel($id)->delete())
+            ? ['name' => 'deleteCommentSuccessful', 'type' => 'success']
+            : ['name' => 'deleteCommentFailure', 'type' => 'error'];
+
+        \Yii::$app->session->setFlash($msg['name'], $msg['type']);
 
         return $this->redirect(['index']);
     }
@@ -144,6 +160,36 @@ class CommentsController extends Controller
     }
 
     /**
+     * Finds the CommentsSearch model.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @return CommentsSearch the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function getSearchModel()
+    {
+        if (($model = new CommentsSearch()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Сторінки, яку Ви шукаєте не існує.');
+        }
+    }
+
+    /**
+     * Finds the Comments model.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @return Comments the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function getModel()
+    {
+        if (($model = new Comments()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Сторінка, яку Ви шукаєте не існує.');
+        }
+    }
+
+    /**
      * Finds the Comments model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -155,7 +201,7 @@ class CommentsController extends Controller
         if (($model = Comments::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Сторінка, яку Ви шукаєте не існує.');
         }
     }
 }

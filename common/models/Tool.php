@@ -18,13 +18,16 @@ class Tool extends Model
             : substr($description, 0);
     }
 
-    public static function setFlash($name, $msg)
-    {
-        return \Yii::$app->session->setFlash($name, \Yii::$app->params[$msg]);
-    }
-
     public static function hasAddressBarIt($url)
     {
         return (stristr($_SERVER['REQUEST_URI'], $url)) ? true : false;
+    }
+
+    public static function getModelForAutocomplete()
+    {
+        return Articles::find()
+            ->select(['id as value', 'title as value'])
+            ->asArray()
+            ->all();
     }
 }

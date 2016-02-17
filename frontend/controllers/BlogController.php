@@ -18,12 +18,9 @@ class BlogController extends Controller
         $blog = Blog::getInstance();
 
         if (!$data = $blog->getArticlesPage())
-            return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['no_data']]);
+            return $this->render('@note', ['msg' => 'noBlogData']);
 
-        return $this->render('index', [
-            'articles' => $data['articles'],
-            'pagination' => $data['pagination'],
-        ]);
+        return $this->render('index', ['data' => $data]);
     }
 
     public function actionCategory()
@@ -33,17 +30,14 @@ class BlogController extends Controller
         $category = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
 
         if (!$category) {
-            \Yii::$app->session->setFlash('warning-msg', \Yii::$app->params['incorrectCategoryUri']);
+            \Yii::$app->session->setFlash('incorrectCategoryUri', 'warning');
             return $this->redirect(['/blog'], 302);
         }
 
         if (!$data = $blog->getArticlesPage($category))
-            return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['noArticles']]);
+            return $this->render('@note', ['msg' => 'noArticles']);
 
-        return $this->render('index', [
-            'articles' => $data['articles'],
-            'pagination' => $data['pagination'],
-        ]);
+        return $this->render('index', ['data' => $data]);
     }
 
     public function actionSingle()
@@ -55,34 +49,33 @@ class BlogController extends Controller
         $article = Articles::findOne(['id' => \Yii::$app->request->get('id')]);
 
         if (!$article) {
-            \Yii::$app->session->setFlash('warning-msg', \Yii::$app->params['incorrectSingleUri']);
+            \Yii::$app->session->setFlash('articleNotFound', 'warning');
             return $this->redirect(['/blog/category?uri=' . $uri], 302);
         }
 
-        if ($article->category->uri != $uri) {
-            \Yii::$app->session->setFlash('warning-msg', \Yii::$app->params['incorrectSingleUri']);
-            return $this->redirect(['/blog/single?uri=' . $article->category->uri . '&id=' . $article->id], 302);
-        }
+        $articleCatUri = $article->category->uri;
+        $articleId = $article->id;
+
+        if ($articleCatUri != $uri)
+            return $this->redirect(['/blog/single?uri=' . $articleCatUri . '&id=' . $articleId], 302);
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
-            $model->article_id = $article->id;
+            $model->article_id = $articleId;
 
             $answer = ($model->addComment())
-                ? ['name' => 'success-msg', 'description' => 'commentSuccessSending']
-                : ['name' => 'error-msg', 'description' => 'commentWarningSending'];
+                ? ['name' => 'commentSuccessSending', 'type' => 'success']
+                : ['name' => 'commentWarningSending', 'type' => 'error'];
 
-            \Yii::$app->session->setFlash($answer['name'], \Yii::$app->params[$answer['description']]);
-
+            \Yii::$app->session->setFlash($answer['name'], $answer['type']);
             return $this->refresh();
         }
 
-        $data = $blog->getComments($article->id);
+        $data = $blog->getComments($articleId);
 
         return $this->render('single', [
             'article' => $article,
             'model' => $model,
-            'comments' => $data['comments'],
-            'pagination' => $data['pagination'],
+            'data' => $data,
         ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use common\models\Tool;
 use Yii;
 use common\models\Categories;
 use common\models\Articles;
@@ -36,10 +35,11 @@ class ArticlesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ArticlesSearch();
+        $searchModel = $this->getSearchModel();
+        $request = \Yii::$app->request;
 
-        $currentCategory = Categories::findOne(['uri' => \Yii::$app->request->get('uri')]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $currentCategory->id);
+        $currentCategory = Categories::findOne(['uri' => $request->get('uri')]);
+        $dataProvider = $searchModel->search($request->queryParams, $currentCategory->id);
 
         return $this->render('index', [
             'currentCategoryName' => $currentCategory->name,
@@ -67,7 +67,7 @@ class ArticlesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Articles();
+        $model = $this->getModel();
 
         $date = date('Y-m-d');
         $model->created = $date;
@@ -99,12 +99,12 @@ class ArticlesController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->setMainImage($model);
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'items' => $this->getItems(),
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            'items' => $this->getItems(),
+        ]);
     }
 
     /**
@@ -118,7 +118,11 @@ class ArticlesController extends Controller
         $model = $this->findModel($id);
         $uri = $model->category->uri;
 
-        $model->delete();
+        $msg = ($model->delete())
+            ? ['name' => 'deleteArticleSuccessful', 'type' => 'success']
+            : ['name' => 'deleteArticleFailure', 'type' => 'error'];
+
+        \Yii::$app->session->setFlash($msg['name'], $msg['type']);
 
         return $this->redirect(['/articles?uri=' . $uri]);
     }
@@ -126,17 +130,16 @@ class ArticlesController extends Controller
     /**
      * Set main image for an article
      * @param mixed $model
-     * @return null
+     * @return mixed
      */
     private function setMainImage($model)
     {
-        $model->image = UploadedFile::getInstance($model, 'image');
+        if (!$model->image = UploadedFile::getInstance($model, 'image')) return false;
 
-        if ($model->image) {
-            $path = \Yii::getAlias('@frontend/web/uploads/images/') . $model->image->baseName . '.' . $model->image->extension;
-            $model->image->saveAs($path);
-            return $model->attachImage($path, true);
-        }
+        $path = \Yii::getAlias('@images') . $model->image->baseName . '.' . $model->image->extension;
+        $model->image->saveAs($path);
+
+        return $model->attachImage($path, true);
     }
 
     /**
@@ -150,6 +153,36 @@ class ArticlesController extends Controller
             'article_status' => [10 => 'Опубліковано', 0 => 'Прихована стаття'],
             'comments_status' => [10 => 'Дозволені', 0 => 'Заборонені'],
         ];
+    }
+
+    /**
+     * Finds the CommentsSearch model.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @return ArticlesSearch the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function getSearchModel()
+    {
+        if (($model = new ArticlesSearch()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Сторінки, яку Ви шукаєте не існує.');
+        }
+    }
+
+    /**
+     * Finds the Comments model.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @return Articles the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function getModel()
+    {
+        if (($model = new Articles()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Сторінка, яку Ви шукаєте не існує.');
+        }
     }
 
     /**

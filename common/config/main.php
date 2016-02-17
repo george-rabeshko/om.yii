@@ -13,4 +13,8 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
+    'aliases' => [
+        '@note' => '@frontend/views/common/note',
+        '@images' => '@frontend/web/uploads/images/',
+    ],
 ];

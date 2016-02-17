@@ -12,11 +12,8 @@ class MainController extends Controller
         $blog = Blog::getInstance();
 
         if (!$data = $blog->getArticlesPage())
-            return $this->render('@frontend/views/common/note', ['note' => \Yii::$app->params['noBlogData']]);
+            return $this->render('@note', ['msg' => 'noBlogData']);
 
-        return $this->render('index', [
-            'articles' => $data['articles'],
-            'pagination' => $data['pagination'],
-        ]);
+        return $this->render('index', ['data' => $data]);
     }
 }

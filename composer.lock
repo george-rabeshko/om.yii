@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "79d32f5316ad587df7fc0425446b822e",
-    "content-hash": "561783fb50729b0160ea9fc2b4a67816",
+    "hash": "d27c1d75923d6b40a5419fb9dbc62036",
+    "content-hash": "5d9fe3c9cee021ca296067d02affc16d",
     "packages": [
         {
             "name": "abeautifulsite/simpleimage",
@@ -57,6 +57,59 @@
             "time": "2015-10-22 19:13:41"
         },
         {
+            "name": "anmaslov/yii2-autocomplete-widget",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anmaslov/yii2-autocomplete-widget.git",
+                "reference": "08beb72c0fa554b91979b2a0ff0307268a4ebbb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anmaslov/yii2-autocomplete-widget/zipball/08beb72c0fa554b91979b2a0ff0307268a4ebbb2",
+                "reference": "08beb72c0fa554b91979b2a0ff0307268a4ebbb2",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/devbridge-autocomplete": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "anmaslov\\autocomplete\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maslov Alexey",
+                    "email": "lelick29@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Ajax AutoComplete widget for Yii2",
+            "keywords": [
+                "autocomplete",
+                "extension",
+                "jquery",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2015-06-29 20:56:52"
+        },
+        {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.5",
             "source": {
@@ -106,6 +159,44 @@
             ]
         },
         {
+            "name": "bower-asset/devbridge-autocomplete",
+            "version": "v1.2.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devbridge/jQuery-Autocomplete.git",
+                "reference": "dfbca90052e83682233a2bcc67c668c644630b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devbridge/jQuery-Autocomplete/zipball/dfbca90052e83682233a2bcc67c668c644630b6b",
+                "reference": "dfbca90052e83682233a2bcc67c668c644630b6b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.7"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "dist/jquery.autocomplete.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "spec",
+                    "scripts",
+                    "content"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Autocomplete provides suggestions while you type into the text field.",
+            "keywords": [
+                "ajax",
+                "autocomplete"
+            ]
+        },
+        {
             "name": "bower-asset/jquery",
             "version": "2.2.0",
             "source": {
@@ -135,6 +226,31 @@
                 "jquery",
                 "library"
             ]
+        },
+        {
+            "name": "bower-asset/jquery-ui",
+            "version": "1.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jqueryui.git",
+                "reference": "c34f8dbf3ba57b3784b93f26119f436c0e8288e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jqueryui/zipball/c34f8dbf3ba57b3784b93f26119f436c0e8288e1",
+                "reference": "c34f8dbf3ba57b3784b93f26119f436c0e8288e1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "jquery-ui.js"
+                ],
+                "bower-asset-ignore": []
+            }
         },
         {
             "name": "bower-asset/jquery.inputmask",
@@ -1781,6 +1897,56 @@
                 "yii2"
             ],
             "time": "2016-02-06 00:49:24"
+        },
+        {
+            "name": "yiisoft/yii2-jui",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-jui.git",
+                "reference": "ce16f29cca654702c2ee500ccad9657a2d2e6a09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/ce16f29cca654702c2ee500ccad9657a2d2e6a09",
+                "reference": "ce16f29cca654702c2ee500ccad9657a2d2e6a09",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-ui": "1.11.*@stable",
+                "yiisoft/yii2": ">=2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                },
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\jui\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com"
+                }
+            ],
+            "description": "The Jquery UI extension for the Yii framework",
+            "keywords": [
+                "jQuery UI",
+                "yii2"
+            ],
+            "time": "2015-05-10 22:09:43"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",

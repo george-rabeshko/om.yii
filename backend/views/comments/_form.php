@@ -3,6 +3,7 @@
 use backend\widgets\ActiveListWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use anmaslov\autocomplete\AutoComplete;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Comments */
@@ -21,7 +22,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated')->textInput() ?>
 
-    <?= $form->field($model, 'article_id')->textInput() ?>
+    <pre>
+        <?= print_r($_POST) ?>
+    </pre>
+
+    <?php
+        echo $form->field($model, 'article_id')->widget(AutoComplete::className(), [
+            'name' => 'link',
+            'data' => $data,
+            'value' => '',
+            'clientOptions' => [
+                'minChars' => 2,
+            ],
+            'options' => [
+                'placeholder' => 'Шукати по заголовку...',
+            ]
+        ]);
+    ?>
 
     <?= ActiveListWidget::widget([
         'model' => $model,

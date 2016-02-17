@@ -37,7 +37,7 @@ class Comments extends ActiveRecord
             [['author', 'created', 'article_id', 'status'], 'required'],
             [['content'], 'string'],
             [['created', 'updated'], 'safe'],
-            [['article_id', 'status'], 'integer'],
+            [['status'], 'integer'],
             [['author'], 'string', 'max' => 50]
         ];
     }
