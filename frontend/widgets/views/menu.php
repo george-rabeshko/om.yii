@@ -1,8 +1,17 @@
 <ul>
     <?php
         foreach($menu as $key => $item):
-        $uri = \Yii::$app->urlManager->createUrl($item['url']);
+        $catUri = \Yii::$app->urlManager->createUrl($item['url']);
+        $requestUri = $_SERVER['REQUEST_URI'];
     ?>
-    <li><a href="<?= $uri ?>" <?php if(stristr($uri, \Yii::$app->request->get('uri')) || $uri == $_SERVER['REQUEST_URI']) echo "class='active'" ?>><?= $item['label'] ?></a></li>
+    <li>
+        <a href="<?= $catUri ?>"
+        <?php
+            if(stristr($catUri, \Yii::$app->request->get('uri'))
+                || $catUri == $requestUri
+                || (stristr($requestUri, 'page-') && $catUri == '/')
+            ) echo "class='active'"
+        ?>><?= $item['label'] ?></a>
+    </li>
     <?php endforeach; ?>
 </ul>
