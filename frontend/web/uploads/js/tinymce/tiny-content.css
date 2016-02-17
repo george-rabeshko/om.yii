@@ -1,6 +1,6 @@
 body, td, pre {
     color: #555;
     font-family: Calibri, sans-serif;
-    font-size: 1em;
-    line-height: 1.5em;
+    font-size: 1em !important;
+    line-height: 1.5em !important;
 }

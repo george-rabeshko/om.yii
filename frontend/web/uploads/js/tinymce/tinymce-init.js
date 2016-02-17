@@ -1,6 +1,6 @@
 tinymce.init({
     selector:'textarea',
-    content_css: "../public/css/tiny-content.css",
+    content_css: "/uploads/js/tinymce/tiny-content.css",
     plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",

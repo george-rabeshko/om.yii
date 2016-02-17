@@ -127,7 +127,10 @@ class CommentsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save())
             return $this->redirect(['view', 'id' => $model->id]);
 
+        $data = ArrayHelper::map(Articles::find()->all(), 'id', 'title');
+
         return $this->render('update', [
+            'data' => $data,
             'model' => $model,
             'items' => $this->getItems(),
         ]);
