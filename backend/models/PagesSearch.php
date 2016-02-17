@@ -52,6 +52,8 @@ class PagesSearch extends Pages
             ],
             'pagination' => [
                 'pagesize' => 10,
+                'forcePageParam' => false,
+                'pageSizeParam' => false,
             ],
         ]);
 

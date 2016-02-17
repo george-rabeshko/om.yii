@@ -55,6 +55,8 @@ class ArticlesSearch extends Articles
             ],
             'pagination' => [
                 'pagesize' => 10,
+                'forcePageParam' => false,
+                'pageSizeParam' => false,
             ],
         ]);
 

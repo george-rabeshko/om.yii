@@ -53,6 +53,8 @@ class CommentsSearch extends Comments
             ],
             'pagination' => [
                 'pagesize' => 15,
+                'forcePageParam' => false,
+                'pageSizeParam' => false,
             ],
         ]);
 
