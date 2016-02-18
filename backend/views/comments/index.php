@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model) {
                     if ($model->article->status) {
                         $host = Yii::$app->request->hostInfo;
-                        $url = $host . '/blog/single?uri=' . $model->article->category->uri . '&id=' . $model->article->id;
+                        $url = $host . '/category/' . $model->article->category->uri . '/' . $model->article->id;
                         return Html::a($model->article->title, Url::to($url), ['target'=>'_blank']);
                     }
 

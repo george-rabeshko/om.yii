@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model) {
                     if ($model->status) {
                         $host = Yii::$app->request->hostInfo;
-                        $url = $host . '/page/index?uri=' . $model->uri;
+                        $url = $host . '/' . $model->uri;
                         return Html::a($model->name, Url::to($url), ['target'=>'_blank']);
                     }
 
