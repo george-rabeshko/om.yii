@@ -18,7 +18,7 @@ AdminAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= \Yii::$app->params['title'] ?></title>
+    <title><?= \Yii::$app->params['titleAdmin'] ?></title>
     <script src="/uploads/js/tinymce/tinymce.min.js"></script>
     <script src="/uploads/js/tinymce/tinymce-init.js"></script>
     <?php $this->head() ?>

@@ -12,6 +12,7 @@ return [
     'layout' => 'admin',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    'defaultRoute' => 'site/login',
     'modules' => [
         'yii2images' => [
             'class' => 'rico\yii2images\Module',
@@ -26,7 +27,8 @@ return [
     'components' => [
         'urlManager' => [
             'rules' => [
-                '/' => 'main/index',
+                '<action:(login|logout|index)>' => 'site/<action>',
+                '/' => 'site/index',
                 '<controller>' => '<controller>/index',
                 '<controller>/<action:create>' => '<controller>/create',
                 'articles/<uri:[\w-]+>' => 'articles/index',
@@ -34,6 +36,10 @@ return [
                 '<controller:(pages|comments)>/<action>/<id:\d+>' => '<controller>/<action>',
             ]
         ],
+        'authManager'=>array(
+            'class'=>'CDbAuthManager',
+            'defaultRoles'=>array('authenticated', 'admin'),
+        ),
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

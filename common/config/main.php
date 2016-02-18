@@ -14,9 +14,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true,
-            'rules' => [
-                'blog/search'=>'blog/search',
-            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

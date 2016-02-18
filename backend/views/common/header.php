@@ -54,7 +54,7 @@
                 </li>
                 <!-- Control Sidebar Toggle Button -->
                 <li class="log-out">
-                    <a href="/"><i class="fa fa-sign-out"></i></a>
+                    <a href="<?= \yii\helpers\Url::to(['/logout']) ?>" data-method="post"><i class="fa fa-sign-out"></i></a>
                 </li>
             </ul>
         </div>

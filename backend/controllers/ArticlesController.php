@@ -6,6 +6,7 @@ use Yii;
 use common\models\Categories;
 use common\models\Articles;
 use backend\models\ArticlesSearch;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -20,6 +21,15 @@ class ArticlesController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

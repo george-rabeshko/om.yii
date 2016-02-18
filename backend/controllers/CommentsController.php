@@ -6,6 +6,7 @@ use Yii;
 use common\models\Articles;
 use common\models\Comments;
 use backend\models\CommentsSearch;
+use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -20,6 +21,15 @@ class CommentsController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
